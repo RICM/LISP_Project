@@ -1,4 +1,4 @@
-package lisp;
+package main;
 
 public class Main {
 
