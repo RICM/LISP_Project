@@ -1,4 +1,4 @@
 
-public class Expr extends Fonction{
+public class Expr extends $Function{
 
 }

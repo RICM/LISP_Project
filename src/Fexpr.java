@@ -1,4 +1,4 @@
 
-public class Fexpr extends Fonction {
+public class Fexpr extends $Function {
 
 }

@@ -1,4 +1,4 @@
 
-public class Nil extends Atom implements Slist {
+public class Nil extends $Atom implements _Slist {
 
 }
