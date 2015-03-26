@@ -1,8 +1,13 @@
+package reader;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import exception.LispException;
+import lisp.*;
+
 public class Reader {
-	
+
 
 	/** le support de lecture */
 	protected static java.io.Reader in = new BufferedReader(new InputStreamReader (System.in));
@@ -11,8 +16,9 @@ public class Reader {
 	 *  @return Sexpr : la Sexpr construite.
 	 *  @throws LispException une erreur de syntaxe
 	 */
-	public static Sexpr read() throws LispException{
-	
+	public static _Sexpr read() throws LispException{
+		_Sexpr toReturn = new Nil(); //TO BE MODIFIED
+		return (toReturn); // TO BE MODIFIED
 	}
 	
 	/** lecture d'une S-EXPRs à partir de la chaine
@@ -20,8 +26,9 @@ public class Reader {
 	 * @return Sexpr : la Sexpr construite
 	 * @throws LispException une erreur de syntaxe
 	 */
-	public static Sexpr read(String s) throws LispException{
-		
+	public static _Sexpr read(String s) throws LispException{
+		_Sexpr toReturn = new Nil(); //TO BE MODIFIED
+		return (toReturn); // TO BE MODIFIED
 	}
 	
 	/** évaluation de la séquence S-EXPRs à partir du fichier s
@@ -29,8 +36,9 @@ public class Reader {
 	 *  @return Sexpr : synbole du nom du fichier
 	 *  @throws LispException une erreur de lecture
 	 */
-	public static Sexpr importe(String s) throws LispException{
-		
+	public static _Sexpr importe(String s) throws LispException{
+		_Sexpr toReturn = new Nil(); //TO BE MODIFIED
+		return (toReturn); // TO BE MODIFIED
 	}
 	
 
