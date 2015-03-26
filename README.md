@@ -8,7 +8,7 @@ Repository for Java LISP Project
 
 @author Tith Reatha
 
-@author Vial-Grelier Aymeric le gentil
+@author Vial-Grelier Aymeric
 
 
 Projet LISP en java 2015
