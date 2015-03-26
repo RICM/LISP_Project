@@ -1,4 +1,4 @@
 
-public class Scons implements Slist{
+public class Scons implements _Slist{
 
 }
