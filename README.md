@@ -6,7 +6,7 @@ Repository for Java LISP Project
 
 @author Nogueron Matthieu
 
-@author Tith Réatha
+@author Tith Reatha
 
 @author Vial-Grelier Aymeric
 
