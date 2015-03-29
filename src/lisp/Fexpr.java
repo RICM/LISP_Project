@@ -1,5 +1,5 @@
 package lisp;
 
-public class Fexpr extends $Function {
+public class Fexpr extends AbstrFunction {
 
 }

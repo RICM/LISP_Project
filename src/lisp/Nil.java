@@ -1,5 +1,5 @@
 package lisp;
 
-public class Nil extends $Atom implements _Slist {
+public class Nil extends AbstrAtom implements _Slist {
 
 }

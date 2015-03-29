@@ -1,5 +1,5 @@
 package lisp;
 
-public class Symbol extends $Atom {
+public class Symbol extends AbstrAtom {
 
 }
