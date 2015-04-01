@@ -7,12 +7,10 @@ import lisp._Sexpr;
 public class Cdr extends AbstrSubr{
 
 	public _Sexpr cdr;
-	
-	public Cdr(String name) {
-		super(name);
-	}
-	
-	public _Sexpr getCdr() throws LispException {
-		return this.cdr.getCdr();
+
+	@Override
+	public _Sexpr eval() throws LispException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

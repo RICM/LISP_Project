@@ -4,6 +4,11 @@ import exception.LispException;
 
 public class Nil extends AbstrAtom implements _Slist {
 	
+	public static Nil nil = new Nil();
+	
+	private Nil(){	
+	}
+	
 	/**
 	 * Get the first element of a S-GRAPH
 	 * 		{in this case, this function always returns null}
@@ -22,5 +27,9 @@ public class Nil extends AbstrAtom implements _Slist {
 	
 	public boolean equals(_Sexpr a){
 		return true;
+	}
+
+	public _Sexpr eval() throws LispException {
+		return this;
 	}
 }

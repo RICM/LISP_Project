@@ -17,4 +17,6 @@ public interface _Sexpr {
 	 * @throws LispException when the S-GRAPH is an atom.
 	 */
 	public _Sexpr getCdr() throws LispException;
+	
+	public _Sexpr eval() throws LispException;
 }

@@ -1,5 +1,7 @@
 package lisp;
 
+import exception.LispException;
+
 public class Scons implements _Slist{
 	
 	public _Sexpr car;
@@ -15,5 +17,10 @@ public class Scons implements _Slist{
 	
 	public boolean equals(_Sexpr a){
 		return this == a;
+	}
+	
+	public _Sexpr eval() throws LispException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

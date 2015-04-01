@@ -7,12 +7,11 @@ import lisp._Sexpr;
 public class Car extends AbstrSubr{
 
 	public _Sexpr car;
-	
-	public Car(String name) {
-		super(name);
+
+	@Override
+	public _Sexpr eval() throws LispException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	public _Sexpr getCar() throws LispException {
-		return this.car.getCar();
-	}
 }
