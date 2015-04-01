@@ -1,10 +1,15 @@
 package main;
 
+
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("Hello LISP");
+		
+		Reader r = new Reader();
+
+		
+		eval(r.read());
+		
 	}
 
 }

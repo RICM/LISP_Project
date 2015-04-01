@@ -4,7 +4,7 @@
   STATIC=false;}PARSER_BEGIN(Reader)
 package reader;
 
-< Import section >
+import java.util.Scanner;
 
 
 public class Reader {
@@ -17,6 +17,10 @@ public class Reader {
 	 *  @throws LispException une erreur de syntaxe
 	 */
 	public static _Sexpr read() throws LispException{
+	  
+	  	Scanner scan = new Scanner(System.in);
+		String str = scan.nextLine();
+		
 		_Sexpr toReturn = new Nil(); //TO BE MODIFIED
 		return (toReturn); // TO BE MODIFIED
 	}
@@ -50,7 +54,7 @@ public class Reader {
 |  "\u001B" | "\u001C" | "\u001D" | "\u001E" | "\u001F" | "\u007F"}
 MORE :
 { "//" : IN_SL_COMMENT
- "/*" : IN_ML_COMMENT
+ 
 }
 <IN_SL_COMMENT> SPECIAL_TOKEN :{<SL_COMMENT: "\n" | "\r" | "\r\n"> : DEFAULT}<IN_ML_COMMENT> SPECIAL_TOKEN :{<ML_COMMENT: "*/" > : DEFAULT}
 <IN_SL_COMMENT,IN_ML_COMMENT> SKIP :{< ~[] >}// les lexemes du langage
