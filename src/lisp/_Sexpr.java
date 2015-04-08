@@ -18,5 +18,10 @@ public interface _Sexpr {
 	 */
 	public _Sexpr getCdr() throws LispException;
 	
+	/**
+	 * Evaluates the _Sexpr
+	 * @return _Sexpr
+	 * @throws LispException
+	 */
 	public _Sexpr eval() throws LispException;
 }
