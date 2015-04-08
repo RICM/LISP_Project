@@ -10,6 +10,18 @@ Repository for Java LISP Project
 
 @author Vial-Grelier Aymeric
 
+## WORKED ON
+- Context
+- Scons
+- _Function
+- exec dans Subr & Fsubr
+- Reader
+
+## TODO
+- Fexpr
+- Expr
+- all applies()
+- ...
 
 Projet LISP en java 2015
 Good Luck Have Fun
