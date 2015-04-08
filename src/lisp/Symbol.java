@@ -1,6 +1,7 @@
 package lisp;
 
 import exception.LispException;
+import context.Contexts;
 
 public class Symbol extends AbstrAtom {
 	
@@ -23,7 +24,6 @@ public class Symbol extends AbstrAtom {
 
 	@Override
 	public _Sexpr eval() throws LispException {
-		
-		return null;
+		return Contexts.getSexprFromContexts(this);
 	}
 }

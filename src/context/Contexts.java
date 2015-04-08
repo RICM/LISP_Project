@@ -6,6 +6,11 @@ import lisp.*;
 public class Contexts {
 	
 	/**
+	 * WARNING : ONLY ONE CONTEXT CAN BE USED AT THE SAME TIME
+	 * DO NOT TRY TO USE MORE THAN ONE LISP WORKING MACHINE AT ONCE
+	 */
+	
+	/**
 	 * Linked list of contexts
 	 * static to be sure there is only one
 	 */
