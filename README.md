@@ -21,7 +21,7 @@ Repository for Java LISP Project
 - Fexpr
 - Expr
 - all applies()
-- Scons -> toString();
+- Scons, Nil, Symbol -> toString();
 - ...
 
 Projet LISP en java 2015
