@@ -1,0 +1,110 @@
+/**
+ * JavaCC template file created by SF JavaCC plugin 1.5.28+ wizard for JavaCC 1.5.0+
+ */options{  static = true;}PARSER_BEGIN(GrammaireLISP)package reader;
+
+public class GrammaireLISP{  public static void main(String args []) throws ParseException  {    GrammaireLISP parser = new GrammaireLISP(System.in);    while (true)    {      System.out.println("Reading from standard input...");      System.out.print("Enter an LISP expression like :");      try      {        switch (GrammaireLISP.one_line())        {          case 0 :           System.out.println("OK.");          break;          case 1 :           System.out.println("Goodbye.");          break;          default :           break;        }      }      catch (Exception e)      {        System.out.println("NOK.");        System.out.println(e.getMessage());        GrammaireLISP.ReInit(System.in);      }      catch (Error e)      {        System.out.println("Oops.");        System.out.println(e.getMessage());        break;      }    }  }}PARSER_END(GrammaireLISP)
+
+SKIP :
+{
+  " "
+| "\r"
+| "\t"
+| "\n"
+}
+
+TOKEN : /* OPERATORS */
+{
+  < PO : "(" >
+| < PF : ")" >
+| < QUOT : "'" >
+| < PT: "." >
+}
+
+TOKEN :
+{
+  < IDENT : (< DIGIT >)+ >
+| < #DIGIT : [ "0"-"9" , "A" -"Z" , "a"-"z", "-", "." ] >
+}
+
+void SEXPR() :
+{}
+{
+	< QUOT > SEXPR()
+	| ATOME()
+	| < PO > DEB_LISTE()
+}
+
+_Sexpr ATOME() :
+{_Sexpr s ;}
+{
+	s=SYMBOLE()
+	{
+	  	return new AbstrAtom(s);
+	}
+}
+
+_Sexpr SYMBOLE():
+{String car;}
+{
+	car=< IDENT >/*CHERCHER DANS LA DOC DE JAVACC*/
+	{
+	  	return new Symbol(car);
+	}
+}
+
+_Sexpr DEB_LISTE():
+{_Sexpr f,l;}
+{
+	f=NIL()
+	{
+		return f;
+	}
+	|l=LIST() <PF >
+	{
+		return l;
+	}
+}
+
+_Sexpr NIL():
+{}
+{
+	< PF >
+	{
+	  return new Nil();
+	}
+}
+
+_Sexpr LIST():
+{ _Sexpr se,fl;}
+{
+  	se=SEXPR() fl=DEB_LISTE()
+  	{
+		return new Scons(se,fl);
+	} 
+}
+
+_Sexpr FIN_LIST():
+{_Sexpr se,pairePointee;}
+{
+	<PT > pairePointee=SEXPR()
+	{
+		return pairePointee;
+	}
+	
+	| se=SEXPR()  FIN_LIST()
+	{
+	  	return new Scons(se,new Nil());
+	}
+	
+	/*|VIDE()
+	{		return new Nil();
+	}*/
+}
+
+/*
+_Sexpr VIDE():
+{}
+{
+	
+}*/
+
