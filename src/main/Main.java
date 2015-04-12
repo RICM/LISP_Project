@@ -9,7 +9,7 @@ public class Main {
 		
 		
 			try {
-				reader2.main(args);
+				Reader.main(args);
 			} catch (ParseException e) {
 				System.out.println(e.getMessage());
 			}
