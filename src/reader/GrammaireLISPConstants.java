@@ -11,28 +11,71 @@ public interface GrammaireLISPConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int PO = 5;
+  int SL_COMMENT = 37;
   /** RegularExpression Id. */
-  int PF = 6;
+  int ML_COMMENT = 38;
   /** RegularExpression Id. */
-  int QUOT = 7;
+  int PO = 40;
   /** RegularExpression Id. */
-  int PT = 8;
+  int PF = 41;
   /** RegularExpression Id. */
-  int IDENT = 9;
+  int QUOT = 42;
   /** RegularExpression Id. */
-  int DIGIT = 10;
+  int PT = 43;
+  /** RegularExpression Id. */
+  int IDENT = 44;
+  /** RegularExpression Id. */
+  int DIGIT = 45;
 
   /** Lexical state. */
   int DEFAULT = 0;
+  /** Lexical state. */
+  int IN_SL_COMMENT = 1;
+  /** Lexical state. */
+  int IN_ML_COMMENT = 2;
 
   /** Literal token values. */
   String[] tokenImage = {
     "<EOF>",
     "\" \"",
-    "\"\\r\"",
     "\"\\t\"",
+    "\"\\r\"",
     "\"\\n\"",
+    "\"\\u0000\"",
+    "\"\\u0001\"",
+    "\"\\u0002\"",
+    "\"\\u0003\"",
+    "\"\\u0004\"",
+    "\"\\u0005\"",
+    "\"\\u0006\"",
+    "\"\\u0007\"",
+    "\"\\b\"",
+    "\"\\u000b\"",
+    "\"\\f\"",
+    "\"\\u000e\"",
+    "\"\\u000f\"",
+    "\"\\u0010\"",
+    "\"\\u0011\"",
+    "\"\\u0012\"",
+    "\"\\u0013\"",
+    "\"\\u0014\"",
+    "\"\\u0015\"",
+    "\"\\u0016\"",
+    "\"\\u0017\"",
+    "\"\\u0018\"",
+    "\"\\u0019\"",
+    "\"\\u001a\"",
+    "\"\\u001b\"",
+    "\"\\u001c\"",
+    "\"\\u001d\"",
+    "\"\\u001e\"",
+    "\"\\u001f\"",
+    "\"\\u007f\"",
+    "\"//\"",
+    "\"/*\"",
+    "<SL_COMMENT>",
+    "\"*/\"",
+    "<token of kind 39>",
     "\"(\"",
     "\")\"",
     "\"\\\'\"",

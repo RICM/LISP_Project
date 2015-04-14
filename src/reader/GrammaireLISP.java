@@ -2,76 +2,113 @@
 package reader;
 
 import lisp.*;
+import exception.*;
+import java.io.*;
 
 public class GrammaireLISP implements GrammaireLISPConstants {
-  public static void main(String args []) throws ParseException
+
+/** le support de lecture */
+        protected static java.io.Reader in = new BufferedReader(new InputStreamReader (System.in));
+
+        /** lecture d'une S-EXPR au terminal
+	 *  @return Sexpr : la Sexpr construite.
+	 *  @throws LispException une erreur de syntaxe
+	 */
+
+        public static _Sexpr read() throws LispException
   {
-    GrammaireLISP parser = new GrammaireLISP(System.in);
-    while (true)
+    Scanner scan = new Scanner(System.in);
+        String str = scan.nextLine();
+        _Sexpr toReturn = new Nil(); //TO BE MODIFIED
+    try
     {
-      System.out.println("Reading from standard input...");
-      System.out.print("Enter an LISP expression like :");
-      try
-      {
-        switch (GrammaireLISP.one_line())//what is dat method
-        {
-          case 0 :
-          System.out.println("OK.");
-          break;
-          case 1 :
-          System.out.println("Goodbye.");
-          break;
-          default :
-          break;
-        }
-      }
-      catch (Exception e)
-      {
-        System.out.println("NOK.");
-        System.out.println(e.getMessage());
-        GrammaireLISP.ReInit(System.in);
-      }
-      catch (Error e)
-      {
-        System.out.println("Oops.");
-        System.out.println(e.getMessage());
-        break;
-      }
+
     }
+    catch(Exception exc)
+    {
+      throw (LispException) exc;
+    }
+        return toReturn;
   }
 
+
+        /** lecture d'une S-EXPRs à partir de la chaine
+	 * @param s : le nom du fichier
+	 * @return Sexpr : la Sexpr construite
+	 * @throws LispException une erreur de syntaxe
+	 */
+        public static _Sexpr read(String s) throws LispException{
+
+                _Sexpr toReturn = new Nil(); //TO BE MODIFIED
+
+            try
+            {
+            }
+            catch(Exception exc)
+            {
+              throw (LispException) exc;
+            }
+                return toReturn;
+        }
+
+        /** évaluation de la séquence S-EXPRs à partir du fichier s
+	 *  @param s : le nom du fichier
+	 *  @return Sexpr : synbole du nom du fichier
+	 *  @throws LispException une erreur de lecture
+	 */
+        public static _Sexpr importe(String s) throws LispException{
+
+                _Sexpr toReturn = new Nil(); //TO BE MODIFIED
+
+        java.io.Reader streamFile = new  BufferedReader(new FileReader (s));
+
+        try
+        {
+        }
+        catch(Exception exc)
+        {
+          throw (LispException) exc;
+        }
+        return toReturn;
+        }
+
   static final public _Sexpr SEXPR() throws ParseException {
+ _Sexpr se ;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case QUOT:
       jj_consume_token(QUOT);
-      return SEXPR();
-      //break;
+      se = SEXPR();
+                {if (true) return se;}
+      break;
     case IDENT:
-      return ATOME();
-      //break;
+      se = ATOME();
+                {if (true) return new SCons(new Symbol("QUOT"), se);}
+      break;
     case PO:
       jj_consume_token(PO);
-      return DEB_LISTE();
-      //break;
+      se = DEB_LISTE();
+                {if (true) return se;}
+      break;
     default:
       jj_la1[0] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
+    throw new Error("Missing return statement in function");
   }
 
   static final public _Sexpr ATOME() throws ParseException {
  _Sexpr s ;
     s = SYMBOLE();
-                {return new AbstrAtom(s);} // What the otarie?
+                {if (true) return new AbstrAtom(s);}
     throw new Error("Missing return statement in function");
   }
 
   static final public _Sexpr SYMBOLE() throws ParseException {
  String car;
-    car = jj_consume_token(IDENT).image;
-                {return new Symbol(car);}
-    //throw new Error("Missing return statement in function");
+    car = jj_consume_token(IDENT);
+                {if (true) return new Symbol(car);}
+    throw new Error("Missing return statement in function");
   }
 
   static final public _Sexpr DEB_LISTE() throws ParseException {
@@ -80,57 +117,56 @@ public class GrammaireLISP implements GrammaireLISPConstants {
     case PF:
       f = NIL();
                 {if (true) return f;}
-      //break;
+      break;
     case PO:
     case QUOT:
     case IDENT:
       l = LIST();
       jj_consume_token(PF);
-                {return l;}
-      //break;
+                {if (true) return l;}
+      break;
     default:
       jj_la1[1] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
-    //throw new Error("Missing return statement in function");
+    throw new Error("Missing return statement in function");
   }
 
   static final public _Sexpr NIL() throws ParseException {
     jj_consume_token(PF);
-          {return (_Sexpr) Nil.nil;}
-    //throw new Error("Missing return statement in function"); DEAD CODE
+          {if (true) return new Nil();}
+    throw new Error("Missing return statement in function");
   }
 
   static final public _Sexpr LIST() throws ParseException {
   _Sexpr se,fl;
     se = SEXPR();
     fl = DEB_LISTE();
-                {return new Scons(se,fl);}
-    //throw new Error("Missing return statement in function");
+                {if (true) return new Scons(se,fl);}
+    throw new Error("Missing return statement in function");
   }
 
   static final public _Sexpr FIN_LIST() throws ParseException {
-	_Sexpr se,pairePointee;
+ _Sexpr se,pairePointee;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case PT:
       jj_consume_token(PT);
       pairePointee = SEXPR();
-                {return pairePointee;}
-      //break;
+                {if (true) return pairePointee;}
+      break;
     case PO:
     case QUOT:
     case IDENT:
       se = SEXPR();
       FIN_LIST();
-                {if (true) return new Scons(se,Nil.nil);}
-      //break;
+                {if (true) return new Scons(se,new Nil());}
+      break;
     default:
       jj_la1[2] = jj_gen;
-      jj_consume_token(-1);
-      throw new ParseException();
+                {if (true) return new Nil();}
     }
-    //throw new Error("Missing return statement in function");
+    throw new Error("Missing return statement in function");
   }
 
   static private boolean jj_initialized_once = false;
@@ -145,11 +181,16 @@ public class GrammaireLISP implements GrammaireLISPConstants {
   static private int jj_gen;
   static final private int[] jj_la1 = new int[3];
   static private int[] jj_la1_0;
+  static private int[] jj_la1_1;
   static {
       jj_la1_init_0();
+      jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x2a0,0x2e0,0x3a0,};
+      jj_la1_0 = new int[] {0x0,0x0,0x0,};
+   }
+   private static void jj_la1_init_1() {
+      jj_la1_1 = new int[] {0x1500,0x1700,0x1d00,};
    }
 
   /** Constructor with InputStream. */
@@ -287,7 +328,7 @@ public class GrammaireLISP implements GrammaireLISPConstants {
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[11];
+    boolean[] la1tokens = new boolean[46];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
@@ -298,10 +339,13 @@ public class GrammaireLISP implements GrammaireLISPConstants {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
             la1tokens[j] = true;
           }
+          if ((jj_la1_1[i] & (1<<j)) != 0) {
+            la1tokens[32+j] = true;
+          }
         }
       }
     }
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 46; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;
