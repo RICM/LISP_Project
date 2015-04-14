@@ -1,7 +1,6 @@
 package main;
 
 import reader.*;
-import exception.ParseException;;
 
 public class Main {
 
@@ -9,7 +8,7 @@ public class Main {
 		
 		
 			try {
-				Reader.main(args);
+				GrammaireLISP.main(args);
 			} catch (ParseException e) {
 				System.out.println(e.getMessage());
 			}
