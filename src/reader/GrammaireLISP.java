@@ -3,9 +3,7 @@ package reader;
 
 import lisp.*;
 import exception.*;
-
 import java.io.*;
-import java.util.Scanner;
 
 public class GrammaireLISP implements GrammaireLISPConstants {
 
@@ -20,8 +18,8 @@ public class GrammaireLISP implements GrammaireLISPConstants {
         public static _Sexpr read() throws LispException
   {
     Scanner scan = new Scanner(System.in);
-    String str = scan.nextLine();
-    _Sexpr toReturn = Nil.nil;
+        String str = scan.nextLine();
+        _Sexpr toReturn = Nil.nil; //TO BE MODIFIED
     try
     {
 
@@ -57,13 +55,12 @@ public class GrammaireLISP implements GrammaireLISPConstants {
 	 *  @param s : le nom du fichier
 	 *  @return Sexpr : synbole du nom du fichier
 	 *  @throws LispException une erreur de lecture
-     * @throws FileNotFoundException 
 	 */
-        public static _Sexpr importe(String s) throws LispException, FileNotFoundException{
+        public static _Sexpr importe(String s) throws LispException{
 
                 _Sexpr toReturn = Nil.nil; //TO BE MODIFIED
 
-        java.io.Reader streamFile = new  BufferedReader(new FileReader (s)); // to close
+        java.io.Reader streamFile = new  BufferedReader(new FileReader (s));
 
         try
         {
@@ -81,32 +78,37 @@ public class GrammaireLISP implements GrammaireLISPConstants {
     case QUOT:
       jj_consume_token(QUOT);
       se = SEXPR();
-                {return se;}
+                {if (true) return se;}
+      break;
     case IDENT:
       se = ATOME();
-                {return new Scons(new Symbol("QUOT"), se);}
+                {if (true) return new SCons(new Symbol("QUOT"), se);}
+      break;
     case PO:
       jj_consume_token(PO);
       se = DEB_LISTE();
-                {return se;}
+                {if (true) return se;}
+      break;
     default:
       jj_la1[0] = jj_gen;
       jj_consume_token(-1);
-      throw new ParseException("Missing return statement in function");
+      throw new ParseException();
     }
+    throw new Error("Missing return statement in function");
   }
 
   static final public _Sexpr ATOME() throws ParseException {
  _Sexpr s ;
     s = SYMBOLE();
-                {return new AbstrAtom(s);} // PROBLEME
+                {if (true) return new AbstrAtom(s);}
     throw new Error("Missing return statement in function");
   }
 
   static final public _Sexpr SYMBOLE() throws ParseException {
  String car;
-    car = jj_consume_token(IDENT).image;
-                {return new Symbol(car);}
+    car = jj_consume_token(IDENT);
+                {if (true) return new Symbol(car);}
+    throw new Error("Missing return statement in function");
   }
 
   static final public _Sexpr DEB_LISTE() throws ParseException {
@@ -115,29 +117,34 @@ public class GrammaireLISP implements GrammaireLISPConstants {
     case PF:
       f = NIL();
                 {if (true) return f;}
+      break;
     case PO:
     case QUOT:
     case IDENT:
       l = LIST();
       jj_consume_token(PF);
                 {if (true) return l;}
+      break;
     default:
       jj_la1[1] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
+    throw new Error("Missing return statement in function");
   }
 
   static final public _Sexpr NIL() throws ParseException {
     jj_consume_token(PF);
-          {return Nil.nil;}
+          {if (true) return new Nil();}
+    throw new Error("Missing return statement in function");
   }
 
   static final public _Sexpr LIST() throws ParseException {
   _Sexpr se,fl;
     se = SEXPR();
     fl = DEB_LISTE();
-                {return new Scons(se,fl);}
+                {if (true) return new Scons(se,fl);}
+    throw new Error("Missing return statement in function");
   }
 
   static final public _Sexpr FIN_LIST() throws ParseException {
@@ -146,17 +153,20 @@ public class GrammaireLISP implements GrammaireLISPConstants {
     case PT:
       jj_consume_token(PT);
       pairePointee = SEXPR();
-                {return pairePointee;}
+                {if (true) return pairePointee;}
+      break;
     case PO:
     case QUOT:
     case IDENT:
       se = SEXPR();
       FIN_LIST();
-                {return (_Sexpr) new Scons(se,Nil.nil);}
+                {if (true) return new Scons(se,new Nil());}
+      break;
     default:
       jj_la1[2] = jj_gen;
-                {return (_Sexpr) Nil.nil;}
+                {if (true) return new Nil();}
     }
+    throw new Error("Missing return statement in function");
   }
 
   static private boolean jj_initialized_once = false;
