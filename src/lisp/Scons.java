@@ -60,4 +60,8 @@ public class Scons implements _Slist{
 			return null;
 		}
 	}
+	
+	public String toString(){
+		return "(" + this.car.toString() + " " + this.cdr.toString() + ")";
+	}
 }

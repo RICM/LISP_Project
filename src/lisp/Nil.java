@@ -32,4 +32,8 @@ public class Nil extends AbstrAtom implements _Slist {
 	public _Sexpr eval() throws LispException {
 		return this;
 	}
+	
+	public String toString(){
+		return "nil";
+	}
 }

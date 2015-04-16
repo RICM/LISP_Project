@@ -30,4 +30,8 @@ public class Symbol extends AbstrAtom {
 	public _Sexpr eval() throws LispException {
 		return Contexts.getSexprFromContexts(this);
 	}
+	
+	public String toString(){
+		return this.name;
+	}
 }
