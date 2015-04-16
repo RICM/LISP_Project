@@ -20,7 +20,7 @@ public class GrammaireLISP{
   {
     Scanner scan = new Scanner(System.in);
 	String str = scan.nextLine();
-	_Sexpr toReturn = new Nil(); //TO BE MODIFIED
+	_Sexpr toReturn = Nil.nil; //TO BE MODIFIED
     try
     {
       
@@ -40,7 +40,7 @@ public class GrammaireLISP{
 	 */
 	public static _Sexpr read(String s) throws LispException{
 
-		_Sexpr toReturn = new Nil(); //TO BE MODIFIED
+		_Sexpr toReturn = Nil.nil; //TO BE MODIFIED
 		
 	    try
 	    {
@@ -59,7 +59,7 @@ public class GrammaireLISP{
 	 */
 	public static _Sexpr importe(String s) throws LispException{
 
-		_Sexpr toReturn = new Nil(); //TO BE MODIFIED
+		_Sexpr toReturn = Nil.nil; //TO BE MODIFIED
 		
         java.io.Reader streamFile = new  BufferedReader(new FileReader (s));
 
@@ -118,7 +118,7 @@ _Sexpr SEXPR() :
 		return se;	}
 }
 
-_Sexpr ATOME() :
+_Sexpr ATOME() : //SOUCIS ICI
 {_Sexpr s ;}
 {
 	s=SYMBOLE()
