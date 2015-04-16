@@ -2,15 +2,96 @@
  * JavaCC template file created by SF JavaCC plugin 1.5.28+ wizard for JavaCC 1.5.0+
  */options{  static = true;}PARSER_BEGIN(GrammaireLISP)package reader;
 
-public class GrammaireLISP{  public static void main(String args []) throws ParseException  {    GrammaireLISP parser = new GrammaireLISP(System.in);    while (true)    {      System.out.println("Reading from standard input...");      System.out.print("Enter an LISP expression like :");      try      {        switch (GrammaireLISP.one_line())        {          case 0 :           System.out.println("OK.");          break;          case 1 :           System.out.println("Goodbye.");          break;          default :           break;        }      }      catch (Exception e)      {        System.out.println("NOK.");        System.out.println(e.getMessage());        GrammaireLISP.ReInit(System.in);      }      catch (Error e)      {        System.out.println("Oops.");        System.out.println(e.getMessage());        break;      }    }  }}PARSER_END(GrammaireLISP)
+import lisp.*;
+import exception.*;
+import java.io.*;
 
+public class GrammaireLISP{
+  
+/** le support de lecture */
+	protected static java.io.Reader in = new BufferedReader(new InputStreamReader (System.in));
+	
+	/** lecture d'une S-EXPR au terminal
+	 *  @return Sexpr : la Sexpr construite.
+	 *  @throws LispException une erreur de syntaxe
+	 */
+ 
+	public static _Sexpr read() throws LispException
+  {
+    Scanner scan = new Scanner(System.in);
+	String str = scan.nextLine();
+	_Sexpr toReturn = new Nil(); //TO BE MODIFIED
+    try
+    {
+      
+    }
+    catch(Exception exc)
+    {
+      throw (LispException) exc;
+    }
+	return toReturn;
+  }
+  
+	
+	/** lecture d'une S-EXPRs à partir de la chaine
+	 * @param s : le nom du fichier
+	 * @return Sexpr : la Sexpr construite
+	 * @throws LispException une erreur de syntaxe
+	 */
+	public static _Sexpr read(String s) throws LispException{
+
+		_Sexpr toReturn = new Nil(); //TO BE MODIFIED
+		
+	    try
+	    {
+	    }
+	    catch(Exception exc)
+	    {
+	      throw (LispException) exc;
+	    }
+		return toReturn;
+	}
+	
+	/** évaluation de la séquence S-EXPRs à partir du fichier s
+	 *  @param s : le nom du fichier
+	 *  @return Sexpr : synbole du nom du fichier
+	 *  @throws LispException une erreur de lecture
+	 */
+	public static _Sexpr importe(String s) throws LispException{
+
+		_Sexpr toReturn = new Nil(); //TO BE MODIFIED
+		
+        java.io.Reader streamFile = new  BufferedReader(new FileReader (s));
+
+        try
+        {
+        }
+        catch(Exception exc)
+        {
+          throw (LispException) exc;
+        }
+        return toReturn;
+	}}PARSER_END(GrammaireLISP)
+
+//les caractères ignorés
 SKIP :
 {
-  " "
-| "\r"
-| "\t"
-| "\n"
+	" " | "\t" | "\r" | "\n" //attention elimine la notion de fin de ligne
+	| "\u0000" | "\u0001" | "\u0002" | "\u0003" | "\u0004" | "\u0005" | "\u0006" | "\u0007" 
+	| "\u0008" | "\u000B" | "\u000C" | "\u000E" | "\u000F" | "\u0010" | "\u0011" | "\u0012"
+	| "\u0013" | "\u0014" | "\u0015" | "\u0016" | "\u0017" | "\u0018" | "\u0019" | "\u001A"
+	| "\u001B" | "\u001C" | "\u001D" | "\u001E" | "\u001F" | "\u007F"
 }
+
+MORE :
+{	
+	"//" : IN_SL_COMMENT
+	| "/*" : IN_ML_COMMENT
+}
+
+<IN_SL_COMMENT> SPECIAL_TOKEN : {<SL_COMMENT: "\n" | "\r" | "\r\n"> : DEFAULT}
+<IN_SL_COMMENT> SPECIAL_TOKEN : {<ML_COMMENT: "*/"> : DEFAULT}
+<IN_SL_COMMENT, IN_ML_COMMENT> SKIP : { < ~[] >} // les lexemes du langage
 
 TOKEN : /* OPERATORS */
 {
@@ -18,20 +99,23 @@ TOKEN : /* OPERATORS */
 | < PF : ")" >
 | < QUOT : "'" >
 | < PT: "." >
-}
-
-TOKEN :
-{
-  < IDENT : (< DIGIT >)+ >
+| < IDENT : (< DIGIT >)+ >
 | < #DIGIT : [ "0"-"9" , "A" -"Z" , "a"-"z", "-", "." ] >
 }
 
-void SEXPR() :
-{}
+
+_Sexpr SEXPR() :
+{_Sexpr se ;}
 {
-	< QUOT > SEXPR()
-	| ATOME()
-	| < PO > DEB_LISTE()
+	< QUOT > se=SEXPR()
+	{		return se;
+	}
+	| se=ATOME()
+	{
+		return new SCons(new Symbol("QUOT"), se);	}
+	| < PO > se=DEB_LISTE()
+	{
+		return se;	}
 }
 
 _Sexpr ATOME() :
@@ -46,7 +130,7 @@ _Sexpr ATOME() :
 _Sexpr SYMBOLE():
 {String car;}
 {
-	car=< IDENT >/*CHERCHER DANS LA DOC DE JAVACC*/
+	car=< IDENT >
 	{
 	  	return new Symbol(car);
 	}
@@ -95,16 +179,8 @@ _Sexpr FIN_LIST():
 	{
 	  	return new Scons(se,new Nil());
 	}
-	
-	/*|VIDE()
+	|
 	{		return new Nil();
-	}*/
+	}
 }
-
-/*
-_Sexpr VIDE():
-{}
-{
-	
-}*/
 
