@@ -1,5 +1,6 @@
 package main;
 
+import exception.LispException;
 import reader.*;
 
 public class Main {
@@ -8,8 +9,9 @@ public class Main {
 		
 		
 			try {
-				GrammaireLISP.main(args);
-			} catch (ParseException e) {
+				GrammaireLISP.read();
+			} catch (LispException e) {
+				// TODO Auto-generated catch block
 				System.out.println(e.getMessage());
 			}
 		
