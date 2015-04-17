@@ -3,6 +3,7 @@ package main;
 import lisp.*;
 import exception.LispException;
 import reader.*;
+import java.io.*;
 
 public class Main {
 
@@ -21,6 +22,12 @@ public class Main {
 				//System.out.println(t.toString());
 			} catch (LispException e) {
 				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+			} catch (FileNotFoundException e){
+				System.out.println("Le fichier n'a pas pû etre trouvé :");
+				System.out.println(e.getMessage());
+			} catch (ParseException e) {
+				System.out.println("Une erreur est survenue lors du parcours du code LISP :");
 				System.out.println(e.getMessage());
 			}
 		

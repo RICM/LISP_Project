@@ -67,28 +67,31 @@ public class GrammaireLISP implements GrammaireLISPConstants {
 	 *  @return Sexpr : synbole du nom du fichier
 	 *  @throws LispException une erreur de lecture
 	 */
-        public static _Sexpr importe(String s) throws LispException{
+        public static _Sexpr importe(String s) throws LispException, ParseException, FileNotFoundException {
 
                 _Sexpr toReturn = null; //TO BE MODIFIED
 
         java.io.Reader streamFile;
 
-        try {
+        /*try {
                         streamFile = new  BufferedReader(new FileReader (s));
                         ReInit(streamFile);
                         toReturn = SEXPR();
                 } catch (FileNotFoundException e) {
                         // TODO Auto-generated catch block
-                        e.printStackTrace();
+                        System.out.println(e.getMessage());
                 } catch (ParseException e) {
                         // TODO Auto-generated catch block
-                        e.printStackTrace();
-                } //TO BE MODIFIED
+                	System.out.println(e.getMessage());
+                } //TO BE MODIFIED*/
 
         /*try{
         }catch(Exception exc){
           throw (LispException) exc;
         }*/
+        streamFile = new  BufferedReader(new FileReader (s));
+        ReInit(streamFile);
+        toReturn = SEXPR();
         return toReturn;
         }
 
