@@ -1,7 +1,7 @@
 package main;
 
 import lisp.*;
-import exception.LispException;
+import exception.*;
 import reader.*;
 import java.io.*;
 
