@@ -62,6 +62,6 @@ public class Scons implements _Slist{
 	}
 	
 	public String toString(){
-		return "(" + this.car.toString() + " " + this.cdr.toString() + ")";
+		return "(" + this.car.toString() + " . " + this.cdr.toString() + ")";
 	}
 }

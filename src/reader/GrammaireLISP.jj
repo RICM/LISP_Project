@@ -30,10 +30,10 @@ public class GrammaireLISP{
 			e.printStackTrace();
 		} //TO BE MODIFIED
 		
-    	try{
+    	/*try{
 	    }catch(Exception exc){
       		throw (LispException) exc;
-    	}
+    	}*/
 		return toReturn;
   	}
   
@@ -45,12 +45,21 @@ public class GrammaireLISP{
 	 */
 	public static _Sexpr read(String s) throws LispException{
 
-		_Sexpr toReturn = Nil.nil; //TO BE MODIFIED
+		_Sexpr toReturn = null; //TO BE MODIFIED
+
+		try {
+		  	ReInit(new ByteArrayInputStream(s.getBytes()));
+			toReturn = SEXPR();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} //TO BE MODIFIED
 		
-	    try{
+	    /*try{
 	    }catch(Exception exc){
 	      throw (LispException) exc;
-	    }
+	    }*/
+	    
 		return toReturn;
 	}
 	
@@ -61,21 +70,26 @@ public class GrammaireLISP{
 	 */
 	public static _Sexpr importe(String s) throws LispException{
 
-		_Sexpr toReturn = Nil.nil; //TO BE MODIFIED
+		_Sexpr toReturn = null; //TO BE MODIFIED
 		
         java.io.Reader streamFile;
 
         try {
 			streamFile = new  BufferedReader(new FileReader (s));
+			ReInit(streamFile);
+			toReturn = SEXPR();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-
-        try{
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} //TO BE MODIFIED
+		
+        /*try{
         }catch(Exception exc){
           throw (LispException) exc;
-        }
+        }*/
         return toReturn;
 	}}PARSER_END(GrammaireLISP)
 
@@ -142,11 +156,10 @@ _Sexpr DEB_LISTE():
 	{
 		return l;
 	}
-		
-|	< PF >
-	{
-  	  return Nil.nil;
-  	}
+
+| 	f=END_LIST()
+	{		return f;
+	}
 }
 
 _Sexpr LIST():
@@ -154,13 +167,26 @@ _Sexpr LIST():
 {
   	<PT > pairePointee=SEXPR() cdr=DEB_LISTE()
 	{
+	  	
 			return new Scons(pairePointee, cdr);
 	}
 	
 |  	car=SEXPR() cdr=DEB_LISTE()
   	{
-		return new Scons(car, cdr);
+  	  	/*if(car.getClass().isInstance(Scons.class) && cdr.equals(Nil.nil))
+  	  		return car;
+  	  	else*/
+  	  		//System.out.println("Car : "+car.toString());
+  	  		//System.out.println("Cdr : "+cdr.toString()+"\n");
+			return new Scons(car, cdr);
 	}
 	
 }
+
+_Sexpr END_LIST():
+{ _Sexpr car, cdr;}
+{  	< PF >
+  	{  	  return Nil.nil;
+ 	}
+}
 
