@@ -3,6 +3,7 @@ package main;
 import lisp.*;
 import exception.*;
 import reader.*;
+import java.io.*;
 
 public class Main {
 
@@ -21,6 +22,12 @@ public class Main {
 				//System.out.println(t.toString());
 			} catch (LispException e) {
 				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+			} catch (FileNotFoundException e){
+				System.out.println("Failed to open file : ");
+				System.out.println(e.getMessage());
+			} catch (ParseException e){
+				System.out.println("Error when parsed file : ");
 				System.out.println(e.getMessage());
 			}
 	}

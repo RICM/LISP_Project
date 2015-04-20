@@ -16,20 +16,20 @@ public class GrammaireLISP implements GrammaireLISPConstants {
 	 *  @throws LispException une erreur de syntaxe
 	 */
 
-        public static _Sexpr read() throws LispException{
+        public static _Sexpr read() throws LispException, ParseException{
         /*Scanner scan = new Scanner(System.in);
 		String str = scan.nextLine();
 		System.out.println(str);*/
                 _Sexpr toReturn = null; //TO BE MODIFIED
 
-                try {
+                /*try {*/
                         toReturn = SEXPR();
-                } catch (ParseException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                } //TO BE MODIFIED
-
-        /*try{
+                /*}/* catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} //TO BE MODIFIED
+		
+    	/*try{
 	    }catch(Exception exc){
       		throw (LispException) exc;
     	}*/
@@ -42,19 +42,19 @@ public class GrammaireLISP implements GrammaireLISPConstants {
 	 * @return Sexpr : la Sexpr construite
 	 * @throws LispException une erreur de syntaxe
 	 */
-        public static _Sexpr read(String s) throws LispException{
+        public static _Sexpr read(String s) throws LispException, ParseException{
 
                 _Sexpr toReturn = null; //TO BE MODIFIED
 
-                try {
+                /*try {*/
                         ReInit(new ByteArrayInputStream(s.getBytes()));
                         toReturn = SEXPR();
-                } catch (ParseException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                } //TO BE MODIFIED
-
-            /*try{
+                /*}/* catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} //TO BE MODIFIED
+		
+	    /*try{
 	    }catch(Exception exc){
 	      throw (LispException) exc;
 	    }*/
@@ -67,24 +67,24 @@ public class GrammaireLISP implements GrammaireLISPConstants {
 	 *  @return Sexpr : synbole du nom du fichier
 	 *  @throws LispException une erreur de lecture
 	 */
-        public static _Sexpr importe(String s) throws LispException{
+        public static _Sexpr importe(String s) throws LispException, ParseException, FileNotFoundException{
 
                 _Sexpr toReturn = null; //TO BE MODIFIED
 
         java.io.Reader streamFile;
 
-        try {
+        /*try {*/
                         streamFile = new  BufferedReader(new FileReader (s));
                         ReInit(streamFile);
                         toReturn = SEXPR();
-                } catch (FileNotFoundException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                } catch (ParseException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                } //TO BE MODIFIED
-
+                /*} /*catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} //TO BE MODIFIED
+		
         /*try{
         }catch(Exception exc){
           throw (LispException) exc;
