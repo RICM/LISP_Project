@@ -117,18 +117,12 @@ _Sexpr LIST():
 {
   	<PT > pairePointee=SEXPR() cdr=DEB_LISTE()
 	{
-	  	
-			return new Scons(pairePointee, cdr);
+		return new Scons(pairePointee, cdr);
 	}
 	
 |  	car=SEXPR() cdr=DEB_LISTE()
   	{
-  	  	/*if(car.getClass().isInstance(Scons.class) && cdr.equals(Nil.nil))
-  	  		return car;
-  	  	else*/
-  	  		//System.out.println("Car : "+car.toString());
-  	  		//System.out.println("Cdr : "+cdr.toString()+"\n");
-			return new Scons(car, cdr);
+		return new Scons(car, cdr);
 	}
 	
 }
@@ -136,7 +130,7 @@ _Sexpr LIST():
 _Sexpr END_LIST():
 { _Sexpr car, cdr;}
 {  	< PF >
-  	{  	  return Nil.nil;
+  	{  	    return Nil.nil;
  	}
 }
 

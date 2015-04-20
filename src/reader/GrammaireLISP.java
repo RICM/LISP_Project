@@ -103,19 +103,14 @@ public class GrammaireLISP implements GrammaireLISPConstants {
       jj_consume_token(PT);
       pairePointee = SEXPR();
       cdr = DEB_LISTE();
-                        {if (true) return new Scons(pairePointee, cdr);}
+                {if (true) return new Scons(pairePointee, cdr);}
       break;
     case PO:
     case QUOT:
     case IDENT:
       car = SEXPR();
       cdr = DEB_LISTE();
-                /*if(car.getClass().isInstance(Scons.class) && cdr.equals(Nil.nil))
-  	  		return car;
-  	  	else*/
-                        //System.out.println("Car : "+car.toString());
-                        //System.out.println("Cdr : "+cdr.toString()+"\n");
-                        {if (true) return new Scons(car, cdr);}
+                {if (true) return new Scons(car, cdr);}
       break;
     default:
       jj_la1[2] = jj_gen;
@@ -128,7 +123,7 @@ public class GrammaireLISP implements GrammaireLISPConstants {
   static final public _Sexpr END_LIST() throws ParseException {
   _Sexpr car, cdr;
     jj_consume_token(PF);
-          {if (true) return Nil.nil;}
+            {if (true) return Nil.nil;}
     throw new Error("Missing return statement in function");
   }
 
