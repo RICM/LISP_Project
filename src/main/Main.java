@@ -14,7 +14,7 @@ public class Main {
 				GrammaireLISP parser = new GrammaireLISP(System.in);
 				//_Sexpr s = parser.read();
 				//_Sexpr s = parser.read("(CAR (a b))");
-				_Sexpr s = parser.importe("resdfsd");
+				_Sexpr s = parser.importe("boot");
 				System.out.println(s.toString());
 				
 				// Test de l'architecture du projet
