@@ -17,50 +17,20 @@ public class GrammaireLISP implements GrammaireLISPConstants {
 	 */
 
         public static _Sexpr read() throws LispException, ParseException{
-        /*Scanner scan = new Scanner(System.in);
-		String str = scan.nextLine();
-		System.out.println(str);*/
-                _Sexpr toReturn = null; //TO BE MODIFIED
-
-                /*try {*/
-                        toReturn = SEXPR();
-                /*}/* catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} //TO BE MODIFIED
-		
-    	/*try{
-	    }catch(Exception exc){
-      		throw (LispException) exc;
-    	}*/
-                return toReturn;
+                return SEXPR();
         }
 
 
         /** lecture d'une S-EXPRs à partir de la chaine
-	 * @param s : le nom du fichier
+	 * @param s : la chaine a lire
 	 * @return Sexpr : la Sexpr construite
 	 * @throws LispException une erreur de syntaxe
 	 */
         public static _Sexpr read(String s) throws LispException, ParseException{
-
-                _Sexpr toReturn = null; //TO BE MODIFIED
-
-                /*try {*/
-                        ReInit(new ByteArrayInputStream(s.getBytes()));
-                        toReturn = SEXPR();
-                /*}/* catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} //TO BE MODIFIED
-		
-	    /*try{
-	    }catch(Exception exc){
-	      throw (LispException) exc;
-	    }*/
-
-                return toReturn;
+                ReInit(new ByteArrayInputStream(s.getBytes()));
+                return SEXPR();
         }
+
 
         /** évaluation de la séquence S-EXPRs à partir du fichier s
 	 *  @param s : le nom du fichier
@@ -68,28 +38,8 @@ public class GrammaireLISP implements GrammaireLISPConstants {
 	 *  @throws LispException une erreur de lecture
 	 */
         public static _Sexpr importe(String s) throws LispException, ParseException, FileNotFoundException{
-
-                _Sexpr toReturn = null; //TO BE MODIFIED
-
-        java.io.Reader streamFile;
-
-        /*try {*/
-                        streamFile = new  BufferedReader(new FileReader (s));
-                        ReInit(streamFile);
-                        toReturn = SEXPR();
-                /*} /*catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} //TO BE MODIFIED
-		
-        /*try{
-        }catch(Exception exc){
-          throw (LispException) exc;
-        }*/
-        return toReturn;
+                ReInit(new BufferedReader(new FileReader (s)));
+        return SEXPR();
         }
 
   static final public _Sexpr SEXPR() throws ParseException {
@@ -153,19 +103,14 @@ public class GrammaireLISP implements GrammaireLISPConstants {
       jj_consume_token(PT);
       pairePointee = SEXPR();
       cdr = DEB_LISTE();
-                        {if (true) return new Scons(pairePointee, cdr);}
+                {if (true) return new Scons(pairePointee, cdr);}
       break;
     case PO:
     case QUOT:
     case IDENT:
       car = SEXPR();
       cdr = DEB_LISTE();
-                /*if(car.getClass().isInstance(Scons.class) && cdr.equals(Nil.nil))
-  	  		return car;
-  	  	else*/
-                        //System.out.println("Car : "+car.toString());
-                        //System.out.println("Cdr : "+cdr.toString()+"\n");
-                        {if (true) return new Scons(car, cdr);}
+                {if (true) return new Scons(car, cdr);}
       break;
     default:
       jj_la1[2] = jj_gen;
@@ -178,7 +123,7 @@ public class GrammaireLISP implements GrammaireLISPConstants {
   static final public _Sexpr END_LIST() throws ParseException {
   _Sexpr car, cdr;
     jj_consume_token(PF);
-          {if (true) return Nil.nil;}
+            {if (true) return Nil.nil;}
     throw new Error("Missing return statement in function");
   }
 
