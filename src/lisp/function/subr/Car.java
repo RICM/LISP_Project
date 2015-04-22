@@ -10,19 +10,6 @@ public class Car extends AbstrSubr{
 	 * Private Attributes
 	 */
 	private int numberOfParam = 1;
-	
-	/**
-	 * Public Attributes (strange)
-	 */
-	public _Sexpr car;
-	
-	/**
-	 * Constructor with number of parameters
-	 * @param numberOfParam The number of parameters
-	 */
-	Car(int numberOfParam){
-		this.numberOfParam = numberOfParam;
-	}
 
 	/**
 	 * Function used to evaluate a Car
@@ -50,13 +37,10 @@ public class Car extends AbstrSubr{
 	 */
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
-		_Sexpr tmp = Nil.nil;
-		tmp = param.getCar();
-		
 		if(param instanceof Symbol){
 			throw new LispException("Error : trying to apply car to a Symbol");
 		} else {
-			return tmp;
+			return param.getCar();
 		}
 	}
 	

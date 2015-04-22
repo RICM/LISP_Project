@@ -1,6 +1,5 @@
 package lisp.function.subr;
 
-import reader.GrammaireLISP;
 import exception.LispException;
 import lisp.*;
 
