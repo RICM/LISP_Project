@@ -9,14 +9,14 @@ import java.util.*;
 public class GrammaireLISP implements GrammaireLISPConstants {
 
         /** le support de lecture */
-        protected static java.io.Reader in = new BufferedReader(new InputStreamReader (System.in));
+        protected java.io.Reader in = new BufferedReader(new InputStreamReader (System.in));
 
         /** lecture d'une S-EXPR au terminal
 	 *  @return Sexpr : la Sexpr construite.
 	 *  @throws LispException une erreur de syntaxe
 	 */
 
-        public static _Sexpr read() throws LispException, ParseException{
+        public _Sexpr read() throws LispException, ParseException{
                 return SEXPR();
         }
 
@@ -26,7 +26,7 @@ public class GrammaireLISP implements GrammaireLISPConstants {
 	 * @return Sexpr : la Sexpr construite
 	 * @throws LispException une erreur de syntaxe
 	 */
-        public static _Sexpr read(String s) throws LispException, ParseException{
+        public _Sexpr read(String s) throws LispException, ParseException{
                 ReInit(new ByteArrayInputStream(s.getBytes()));
                 return SEXPR();
         }
@@ -37,7 +37,7 @@ public class GrammaireLISP implements GrammaireLISPConstants {
 	 *  @return Sexpr : synbole du nom du fichier
 	 *  @throws LispException une erreur de lecture
 	 */
-        public static _Sexpr importe(String s) throws LispException, ParseException, FileNotFoundException{
+        public _Sexpr importe(String s) throws LispException, ParseException, FileNotFoundException{
                 ReInit(new BufferedReader(new FileReader (s)));
         return SEXPR();
         }
