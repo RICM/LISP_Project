@@ -1,15 +1,15 @@
 package lisp.function.subr;
 
 import exception.LispException;
-import lisp.AbstrSubr;
-import lisp._Sexpr;
+
+import lisp.*;
 
 public class Car extends AbstrSubr{
 
 	/**
 	 * Private Attributes
 	 */
-	private int numberOfParam;
+	private int numberOfParam = 1;
 	
 	/**
 	 * Public Attributes (strange)
@@ -44,13 +44,20 @@ public class Car extends AbstrSubr{
 	}
 
 	/**
-	 * Function used to apply an _Sexpr to the Cdr function
+	 * Function used to apply an _Sexpr to the Car function
 	 * @return _Sexpr The _Sexpr resulting from application
+	 * @throws LispException 
 	 */
 	@Override
-	public _Sexpr apply(_Sexpr param) {
-		// TODO Auto-generated method stub
-		return null;
+	public _Sexpr apply(_Sexpr param) throws LispException{
+		_Sexpr tmp = Nil.nil;
+		tmp = param.getCar();
+		
+		if(param instanceof Symbol){
+			throw new LispException("Error : trying to apply car to a Symbol");
+		} else {
+			return tmp;
+		}
 	}
 	
 }
