@@ -12,6 +12,13 @@ public abstract class AbstrFsubr extends AbstrPrimitive{
 	 * @throws LispException
 	 */
 	public _Sexpr exec(_Function fun, _Sexpr param) throws LispException {
+		_Sexpr tmp = param;
+		int i = 0;
+		while(tmp.getCar() != Nil.nil){
+			tmp = tmp.getCdr();
+			i++;
+		}
+		if(i != fun.getNumberOfParam()) throw new LispException("Invalid number of parameters");
 		return fun.apply(param);
 	}
 }

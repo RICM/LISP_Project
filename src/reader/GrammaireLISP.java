@@ -48,7 +48,7 @@ public class GrammaireLISP implements GrammaireLISPConstants {
     case QUOT:
       jj_consume_token(QUOT);
       se = SEXPR();
-                {if (true) return new Scons(new Symbol("QUOTE"), se);}
+                {if (true) return new Scons(new Symbol("QUOTE"), new Scons(se, Nil.nil));}
       break;
     case IDENT:
       se = SYMBOLE();

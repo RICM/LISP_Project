@@ -78,7 +78,7 @@ _Sexpr SEXPR() :
 {_Sexpr se ;}
 {
 	< QUOT > se=SEXPR()
-	{		return new Scons(new Symbol("QUOTE"), se);
+	{		return new Scons(new Symbol("QUOTE"), new Scons(se, Nil.nil));
 	}
 	
 | 	se=SYMBOLE()
