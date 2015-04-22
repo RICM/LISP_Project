@@ -1,18 +1,12 @@
 package lisp;
 
 public class Expr extends AbstrFunction{
-
-	/**
-	 * Private attributes
-	 */
-	private int numberOfParam;
 	
 	/**
 	 * Constructor with number of parameters
 	 * @param numberOfParam The number of parameters
 	 */
-	public Expr(int numberOfParam){
-		this.numberOfParam = numberOfParam;
+	public Expr(){
 	}
 	
 	/**
@@ -21,7 +15,7 @@ public class Expr extends AbstrFunction{
 	 */
 	@Override
 	public int getNumberOfParam() {
-		return this.numberOfParam;
+		return 0;
 	}
 
 	/**

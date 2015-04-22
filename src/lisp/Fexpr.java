@@ -1,18 +1,12 @@
 package lisp;
 
 public class Fexpr extends AbstrFunction {
-
-	/**
-	 * Private attributes
-	 */
-	private int numberOfParam;
 	
 	/**
 	 * Constructor with number of parameters
 	 * @param numberOfParam The number of parameters
 	 */
-	public Fexpr(int numberOfParam){
-		this.numberOfParam = numberOfParam;
+	public Fexpr(){
 	}
 	
 	/**
@@ -21,7 +15,7 @@ public class Fexpr extends AbstrFunction {
 	 */
 	@Override
 	public int getNumberOfParam() {
-		return this.numberOfParam;
+		return 0;
 	}
 
 	/**
@@ -32,5 +26,4 @@ public class Fexpr extends AbstrFunction {
 	public _Sexpr apply(_Sexpr param) {
 		return null;
 	}
-
 }
