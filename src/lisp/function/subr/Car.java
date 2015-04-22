@@ -20,7 +20,7 @@ public class Car extends AbstrSubr{
 	 * Constructor with number of parameters
 	 * @param numberOfParam The number of parameters
 	 */
-	public Car(int numberOfParam){
+	Car(int numberOfParam){
 		this.numberOfParam = numberOfParam;
 	}
 
