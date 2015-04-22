@@ -12,17 +12,14 @@ Repository for Java LISP Project
 
 ## WORKED ON
 - Context
-- Scons
-- _Function
-- exec dans Subr & Fsubr
 - Reader
+- added exec in Subr
 
 ## TODO
-- Fexpr
-- Expr
-- all applies()
-- Scons, Nil, Symbol -> toString();
-- ...
+- Eval 
+- Exec Fexpr
+- Apply Fexpr
+- Apply Expr
 
 Projet LISP en java 2015
 Good Luck Have Fun
