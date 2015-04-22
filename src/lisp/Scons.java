@@ -49,9 +49,9 @@ public class Scons implements _Slist{
 		}else if(evaluation instanceof Scons){
 			throw new LispException ("Dont expect Scons as functor of Scons");
 		}else if(evaluation instanceof AbstrPrimitive){
-			
+			return null;
 		}else if(evaluation instanceof Fexpr){
-			return cdr;
+			return null;
 		}
 		else{
 			throw new LispException("Unexpected typo found as functor of Scons");
