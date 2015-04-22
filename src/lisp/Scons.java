@@ -45,19 +45,16 @@ public class Scons implements _Slist{
 	public _Sexpr eval() throws LispException {
 		_Sexpr evaluation = car.eval();
 		if (evaluation == Nil.nil){
-			return evaluation.eval();
-		}else if(evaluation instanceof AbstrPrimitive){
-			if (evaluation instanceof AbstrSubr){
-				return ((AbstrPrimitive) evaluation).apply(cdr.eval());
-			}else{
-				return ((AbstrPrimitive) evaluation).apply(cdr);
-			}
-		}else if(evaluation instanceof Symbol){
-			return evaluation.eval();
+			throw new LispException("Dont expect nil as functor of Scons");
 		}else if(evaluation instanceof Scons){
-			return evaluation.eval();
-		}else{
-			return null;
+			throw new LispException ("Dont expect Scons as functor of Scons");
+		}else if(evaluation instanceof AbstrPrimitive){
+			
+		}else if(evaluation instanceof Fexpr){
+			return cdr;
+		}
+		else{
+			throw new LispException("Unexpected typo found as functor of Scons");
 		}
 	}
 	

@@ -6,6 +6,13 @@ import lisp.*;
 public class Context {
 
 	/**
+	 * used to get context
+	 */
+	static public Context context(){
+		return new Context();
+	}
+	
+	/**
 	 * The map that contains the associations of <Symbol, _Sexpr> in a context
 	 */
 	private HashMap<Symbol, _Sexpr> context;
@@ -13,7 +20,7 @@ public class Context {
 	/**
 	 * Used to create a new Context of <Symbol, _Sexpr>
 	 */
-	public Context(){
+	private Context(){
 		this.context = new HashMap<Symbol, _Sexpr>();
 	}
 	
