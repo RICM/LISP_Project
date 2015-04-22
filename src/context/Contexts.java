@@ -11,6 +11,14 @@ public class Contexts {
 	 */
 	
 	/**
+	 * Function used to get the list with all contexts
+	 * @return Contexts the list with contexts
+	 */
+	public static Contexts contexts(){
+		return new Contexts();
+	}
+	
+	/**
 	 * Linked list of contexts
 	 * static to be sure there is only one
 	 */

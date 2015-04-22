@@ -4,13 +4,6 @@ import java.util.HashMap;
 import lisp.*;
 
 public class Context {
-
-	/**
-	 * used to get context
-	 */
-	static public Context context(){
-		return new Context();
-	}
 	
 	/**
 	 * The map that contains the associations of <Symbol, _Sexpr> in a context
@@ -20,7 +13,7 @@ public class Context {
 	/**
 	 * Used to create a new Context of <Symbol, _Sexpr>
 	 */
-	private Context(){
+	public Context(){
 		this.context = new HashMap<Symbol, _Sexpr>();
 	}
 	
@@ -42,5 +35,5 @@ public class Context {
 	 */
 	public void insertValue(Symbol symbol, _Sexpr expression){
 		this.context.put(symbol, expression);
-	}
+	} 
 }
