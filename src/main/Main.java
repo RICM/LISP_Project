@@ -12,9 +12,9 @@ public class Main {
 		
 			try {
 				GrammaireLISP parser = new GrammaireLISP(System.in);
-				//_Sexpr s = parser.read();
+				_Sexpr s = parser.read();
 				//_Sexpr s = parser.read("(CAR (a b))");
-				_Sexpr s = parser.importe("boot");
+				_Sexpr s2 = parser.importe("boot");
 				System.out.println(s.toString());
 				
 				// Test de l'architecture du projet
@@ -31,5 +31,4 @@ public class Main {
 				System.out.println(e.getMessage());
 			}
 	}
-
 }

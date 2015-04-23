@@ -4,7 +4,7 @@ import java.util.HashMap;
 import lisp.*;
 
 public class Context {
-
+	
 	/**
 	 * The map that contains the associations of <Symbol, _Sexpr> in a context
 	 */
@@ -35,5 +35,5 @@ public class Context {
 	 */
 	public void insertValue(Symbol symbol, _Sexpr expression){
 		this.context.put(symbol, expression);
-	}
+	} 
 }

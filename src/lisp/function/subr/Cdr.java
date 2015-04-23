@@ -1,8 +1,7 @@
 package lisp.function.subr;
 
 import exception.LispException;
-import lisp.AbstrSubr;
-import lisp._Sexpr;
+import lisp.*;
 
 public class Cdr extends AbstrSubr{
 
@@ -46,10 +45,17 @@ public class Cdr extends AbstrSubr{
 	/**
 	 * Function used to apply an _Sexpr to the Cdr function
 	 * @return _Sexpr The _Sexpr resulting from application
+	 * @throws LispException 
 	 */
 	@Override
-	public _Sexpr apply(_Sexpr param) {
-		// TODO Auto-generated method stub
-		return null;
+	public _Sexpr apply(_Sexpr param) throws LispException{
+		
+		if (param instanceof Symbol){
+			throw new LispException ("Invalid apply of CDR to a Symbol");
+		}
+		else{
+			return param.getCdr();
+		}
 	}
+		
 }
