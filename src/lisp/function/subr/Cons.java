@@ -12,34 +12,22 @@ public class Cons extends AbstrSubr{
 	private int numberOfParam = 2 ;
 	
 	/**
-	 * Public Attributes (strange)
+	 * Function used to evaluate a Car
+	 * @return _Sexpr then _Sexpr resulting from evaluation
 	 */
-	public _Sexpr cons;
+	@Override
+	public _Sexpr eval() throws LispException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	@Override
 	public int getNumberOfParam() {
-		// TODO Auto-generated method stub
-		return 0;
+		return numberOfParam;
 	}
 
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException {
-		_Sexpr p1=param.getCar();
-		_Sexpr p2=param.getCdr();
-		
-		if(p2 instanceof Scons){
-			return new Scons(p1, p2);
-		}
-		else if (p2 instanceof AbstrAtom){
-			return new Scons(p1, p2); // TODO Change this shit
-		}
-		return null;
-	}
-	
-
-	@Override
-	public _Sexpr eval() throws LispException {
-		return cons;
-
+		return new Scons(param.getCar(), param.getCdr());
 	}
 }

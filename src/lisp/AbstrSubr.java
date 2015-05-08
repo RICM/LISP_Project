@@ -18,7 +18,8 @@ public abstract class AbstrSubr extends AbstrPrimitive{
 	public _Sexpr exec(_Function fun, _Sexpr param) throws LispException {
 		ArrayList<_Sexpr> parametersList = new ArrayList<_Sexpr>();
 		_Sexpr evalSexpr = null;
-		_Sexpr tmp = param;
+		_Sexpr paramTmp = param;
+		_Sexpr tmp = paramTmp;
 		int i = 0;
 		
 		//count number of parameters
@@ -27,23 +28,28 @@ public abstract class AbstrSubr extends AbstrPrimitive{
 			tmp = tmp.getCdr();
 		}
 		
-		tmp = param.getCar();
+		tmp = paramTmp;
 		//System.out.println(fun.getClass().getName()+" : parameters origin list\t\t"+tmp);
 		
 		// evaluate the parameters
-		while(tmp != Nil.nil){
+		while(tmp != null){
 			//System.out.println(fun.getClass().getName()+" : parameter to add\t\t"+tmp.getCar());
-			if(tmp.getCar().eval() instanceof _Function){
-				parametersList.add(tmp.eval());
-				tmp = Nil.nil;
-			}else{
-				if(tmp.getCar().eval() == null)
-					throw new LispException("--> undefined function " + tmp.getCar() + ".");
-				else{	
-					parametersList.add(tmp.getCar().eval());
-					tmp = tmp.getCdr();
+			if(tmp instanceof Scons){
+				if(tmp.getCar().eval() instanceof _Function){
+					parametersList.add(tmp.eval());
+					tmp = Nil.nil;
+				}else{
+					if(tmp.getCar().eval() == null)
+						throw new LispException("--> undefined function " + tmp.getCar() + ".");
+					else{	
+						parametersList.add(tmp.getCar().eval());
+					}
 				}
+			}else{
+				parametersList.add(tmp.eval());
 			}
+			paramTmp = paramTmp.getCdr();
+			tmp = paramTmp.getCar();
 		}
 		
 		// reconstruct the _Sexpr of parameters
