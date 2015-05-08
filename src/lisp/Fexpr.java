@@ -1,5 +1,7 @@
 package lisp;
 
+import exception.LispException;
+
 public class Fexpr extends AbstrFunction {
 	
 	/**
@@ -21,9 +23,22 @@ public class Fexpr extends AbstrFunction {
 	/**
 	 * Function used to apply an _Sexpr to the Fexpr function
 	 * @return _Sexpr The _Sexpr resulting from application
+	 * @throws LispException 
 	 */
 	@Override
-	public _Sexpr apply(_Sexpr param) {
+	public _Sexpr apply(_Sexpr fun) throws LispException {
+		_Sexpr listOfParamFormel = fun.getCar().getCar();
+		_Sexpr prog = fun.getCar().getCdr();
+		
+		// liaison des parametres
+		
+		
+		// evaluation du corps de la fonction
+		prog.eval();
+		
+		// destruction de la liaison
+		
+		
 		return null;
 	}
 }

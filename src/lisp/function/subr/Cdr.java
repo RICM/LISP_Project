@@ -8,20 +8,7 @@ public class Cdr extends AbstrSubr{
 	/**
 	 * Private Attributes
 	 */
-	private int numberOfParam;
-	
-	/**
-	 * Public Attributes (strange)
-	 */
-	public _Sexpr cdr;
-
-	/**
-	 * Constructor with number of parameters
-	 * @param numberOfParam The number of parameters
-	 */
-	public Cdr(int numberOfParam){
-		this.numberOfParam = numberOfParam;
-	}
+	private int numberOfParam = 1;
 	
 	/**
 	 * Function used to evaluate a Cdr
