@@ -58,18 +58,21 @@ public class Scons implements _Slist{
 				else if(((Symbol) evaluation.getCar()).name.equals("flambda"))
 					return new Fexpr().apply(new Scons(evaluation.getCdr(), this.getCdr()));
 				else
-					throw new LispException("Unexpected typo found as functor of Scons");
+					return new Scons(evaluation.eval(), this.getCdr().eval());
 			}else{
 				throw new LispException("Unexpected typo found as functor of Scons");
 			}
 		}else if(evaluation instanceof Symbol){
-			System.out.println(((Symbol)evaluation).name);
-			if(evaluation.eval() instanceof AbstrSubr)
+			
+			//System.out.println(((Symbol)evaluation).name);
+			
+			if(evaluation.eval() instanceof AbstrSubr){
 				return ((AbstrSubr)evaluation.eval()).exec((_Function)evaluation.eval(), this.getCdr());
+			}
 			else if(evaluation.eval() instanceof AbstrFsubr)
 				return ((AbstrFsubr)evaluation.eval()).exec((_Function)evaluation.eval(), this.getCdr());
 			else
-				throw new LispException("Unexpected typo found as functor of Scons");
+				return new Scons(evaluation.eval(), getCdr().eval());
 		}else{
 			throw new LispException("Unexpected typo found as functor of Scons");
 		}

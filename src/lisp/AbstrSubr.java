@@ -28,29 +28,39 @@ public abstract class AbstrSubr extends AbstrPrimitive{
 		}
 		
 		tmp = param.getCar();
+		//System.out.println(fun.getClass().getName()+" : parameters origin list\t\t"+tmp);
 		
 		// evaluate the parameters
 		while(tmp != Nil.nil){
-			
-			if(tmp.getCar().eval() == null)
-				throw new LispException("--> undefined function " + tmp.getCar().getCar() + ".");
-			else{
-				parametersList.add(tmp.getCar().eval());
+			//System.out.println(fun.getClass().getName()+" : parameter to add\t\t"+tmp.getCar());
+			if(tmp.getCar().eval() instanceof _Function){
+				parametersList.add(tmp.eval());
+				tmp = Nil.nil;
+			}else{
+				if(tmp.getCar().eval() == null)
+					throw new LispException("--> undefined function " + tmp.getCar() + ".");
+				else{	
+					parametersList.add(tmp.getCar().eval());
+					tmp = tmp.getCdr();
+				}
 			}
-			tmp = tmp.getCdr();
 		}
 		
 		// reconstruct the _Sexpr of parameters
-		while(!parametersList.isEmpty()){
-			if(evalSexpr == null)
-				evalSexpr = new Scons(parametersList.get(parametersList.size()-1), Nil.nil);
-			else
-				evalSexpr = new Scons(parametersList.get(parametersList.size()-1), evalSexpr);
-			
-			parametersList.remove(parametersList.size()-1);
+		if(parametersList.size() == 1)
+			evalSexpr = parametersList.get(0);
+		else{
+			while(!parametersList.isEmpty()){
+				if(evalSexpr == null)
+					evalSexpr = new Scons(parametersList.get(parametersList.size()-1), Nil.nil);
+				else
+					evalSexpr = new Scons(parametersList.get(parametersList.size()-1), evalSexpr);
+				
+				parametersList.remove(parametersList.size()-1);
+			}
 		}
 		
-		System.out.println(evalSexpr);
+		//System.out.println(fun.getClass().getName()+" : parameters list\t\t"+evalSexpr);
 		
 		if(i != fun.getNumberOfParam()) throw new LispException("Invalid number of parameters");
 		return fun.apply(evalSexpr);

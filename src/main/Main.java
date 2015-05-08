@@ -18,7 +18,7 @@ public class Main {
 			try {
 				GrammaireLISP parser = new GrammaireLISP(System.in);
 				//_Sexpr s = parser.read();
-				_Sexpr s = parser.read("(CAR (A B))");
+				_Sexpr s = parser.read("(CAR (CAR(CDR(A(A(A B C))))))");
 				_Sexpr s2 = parser.importe("boot");
 				
 				
@@ -27,6 +27,7 @@ public class Main {
 				//System.out.println(t.toString());
 				
 				Symbol car = new Symbol("CAR");
+				Symbol cdr = new Symbol("CDR");
 				Symbol a = new Symbol("A");
 				Symbol b = new Symbol("B");
 				Symbol c = new Symbol("C");
@@ -35,6 +36,7 @@ public class Main {
 				Contexts.addSymbolToFirstContext(b, b);
 				Contexts.addSymbolToFirstContext(c, c);
 				Contexts.addSymbolToFirstContext(car, new Car());
+				Contexts.addSymbolToFirstContext(cdr, new Cdr());
 				
 				System.out.println(s);
 				System.out.println(s.eval());/*
