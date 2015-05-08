@@ -8,13 +8,13 @@ public class Context {
 	/**
 	 * The map that contains the associations of <Symbol, _Sexpr> in a context
 	 */
-	private HashMap<Symbol, _Sexpr> context;
+	private HashMap<Integer, _Sexpr> context;
 	
 	/**
 	 * Used to create a new Context of <Symbol, _Sexpr>
 	 */
 	public Context(){
-		this.context = new HashMap<Symbol, _Sexpr>();
+		this.context = new HashMap<Integer, _Sexpr>();
 	}
 	
 	/**
@@ -23,7 +23,7 @@ public class Context {
 	 * @return _Sexpr if association found null if not found
 	 */
 	public _Sexpr getValue(Symbol value){
-		return this.context.get(value);
+		return this.context.get(value.hashCode());
 	}
 	
 	/**
@@ -34,6 +34,6 @@ public class Context {
 	 * @param expression The expression to reference
 	 */
 	public void insertValue(Symbol symbol, _Sexpr expression){
-		this.context.put(symbol, expression);
-	} 
+		this.context.put(symbol.hashCode(), expression);
+	}
 }
