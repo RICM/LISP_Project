@@ -56,13 +56,14 @@ public class Contexts {
 	 * @return _Sexpr The Sexpr found or null if the symbol couldn't be found
 	 */
 	public static _Sexpr getSexprFromContexts(Symbol symbol){
-		int loopVar = contexts.size();
+		int loopVar = contexts.size()-1;
 		while (loopVar >= 0){
 			if(contexts.get(loopVar).getValue(symbol) != null){
 				return contexts.get(loopVar).getValue(symbol);
 			}
-			loopVar --;
+			loopVar--;
 		}
+		System.out.println("Not found");
 		return null;
 	}
 	

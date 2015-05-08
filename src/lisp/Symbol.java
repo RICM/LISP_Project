@@ -34,4 +34,8 @@ public class Symbol extends AbstrAtom {
 	public String toString(){
 		return this.name;
 	}
+	
+	public int hashCode(){
+		return name.hashCode();
+	}
 }

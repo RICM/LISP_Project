@@ -47,17 +47,33 @@ public class Scons implements _Slist{
 	 * @return _Sexpr the _Sexpr resulting from the evaluation of car
 	 */
 	public _Sexpr eval() throws LispException {
-		_Sexpr evaluation = car.eval();
+		_Sexpr evaluation = car;
+		
 		if (evaluation == Nil.nil){
 			throw new LispException("Dont expect nil as functor of Scons");
 		}else if(evaluation instanceof Scons){
-			throw new LispException ("Dont expect Scons as functor of Scons");
-		}else if(evaluation instanceof AbstrPrimitive){
-			return null;
-		}else if(evaluation instanceof Fexpr){
-			return null;
-		}
-		else{
+			if(evaluation.getCar() instanceof Symbol){
+				if(((Symbol) evaluation.getCar()).name.equals("lambda"))
+					return new Expr().apply(new Scons(evaluation.getCdr(), this.getCdr()));
+				else if(((Symbol) evaluation.getCar()).name.equals("flambda"))
+					return new Fexpr().apply(new Scons(evaluation.getCdr(), this.getCdr()));
+				else
+					return new Scons(evaluation.eval(), this.getCdr().eval());
+			}else{
+				throw new LispException("Unexpected typo found as functor of Scons");
+			}
+		}else if(evaluation instanceof Symbol){
+			
+			//System.out.println(((Symbol)evaluation).name);
+			
+			if(evaluation.eval() instanceof AbstrSubr){
+				return ((AbstrSubr)evaluation.eval()).exec((_Function)evaluation.eval(), this.getCdr());
+			}
+			else if(evaluation.eval() instanceof AbstrFsubr)
+				return ((AbstrFsubr)evaluation.eval()).exec((_Function)evaluation.eval(), this.getCdr());
+			else
+				return new Scons(evaluation.eval(), getCdr().eval());
+		}else{
 			throw new LispException("Unexpected typo found as functor of Scons");
 		}
 	}
