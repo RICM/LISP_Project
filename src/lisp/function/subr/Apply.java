@@ -1,6 +1,5 @@
-package lisp.function.fsubr;
+package lisp.function.subr;
 
-import lisp.AbstrFsubr;
 import lisp.AbstrSubr;
 import lisp.Nil;
 import lisp.Scons;
@@ -8,12 +7,12 @@ import lisp.Symbol;
 import lisp._Sexpr;
 import exception.LispException;
 
-public class Quote extends AbstrFsubr{
+public class Apply extends AbstrSubr{
 
 	/**
 	 * Private Attributes
 	 */
-	private int numberOfParam = 1;
+	private int numberOfParam = 2;
 
 	/**
 	 * Function used to evaluate a Car
@@ -41,6 +40,19 @@ public class Quote extends AbstrFsubr{
 	 */
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
-		return param.getCar();
+		if(param instanceof Symbol){
+			throw new LispException("Error : trying to apply CAR to a Symbol");
+		} else{
+			if(param.getCar() instanceof Scons && param.getCdr() == Nil.nil){
+				if(param.getCar().getCar() instanceof Scons)
+					((Scons)param.getCar().getCar()).isRoot = true;
+				return param.getCar().getCar();
+			}
+			else{
+				if(param.getCar() instanceof Scons)
+					((Scons)param.getCar()).isRoot = true;
+				return param.getCar();
+			}
+		}
 	}
 }

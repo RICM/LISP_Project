@@ -1,19 +1,20 @@
 package lisp.function.fsubr;
 
+import context.Contexts;
 import lisp.AbstrFsubr;
-import lisp.AbstrSubr;
 import lisp.Nil;
 import lisp.Scons;
 import lisp.Symbol;
 import lisp._Sexpr;
+import lisp.function.subr.Set;
 import exception.LispException;
 
-public class Quote extends AbstrFsubr{
+public class Define extends AbstrFsubr{
 
 	/**
 	 * Private Attributes
 	 */
-	private int numberOfParam = 1;
+	private int numberOfParam = 3;
 
 	/**
 	 * Function used to evaluate a Car
@@ -41,6 +42,11 @@ public class Quote extends AbstrFsubr{
 	 */
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
-		return param.getCar();
+		if(!(param.getCar() instanceof Symbol))
+			throw new LispException("Error : Unvalid name for function");
+		else{
+			Contexts.changeSexprInContexts((Symbol)param.getCar(), param.getCdr());
+			return param.getCar();
+		}
 	}
 }

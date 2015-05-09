@@ -1,6 +1,5 @@
-package lisp.function.fsubr;
+package lisp.function.subr;
 
-import lisp.AbstrFsubr;
 import lisp.AbstrSubr;
 import lisp.Nil;
 import lisp.Scons;
@@ -8,7 +7,7 @@ import lisp.Symbol;
 import lisp._Sexpr;
 import exception.LispException;
 
-public class Quote extends AbstrFsubr{
+public class Implode extends AbstrSubr{
 
 	/**
 	 * Private Attributes
@@ -41,6 +40,6 @@ public class Quote extends AbstrFsubr{
 	 */
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
-		return param.getCar();
+		return new Symbol(param.toString().replaceAll("\\W", ""));
 	}
 }

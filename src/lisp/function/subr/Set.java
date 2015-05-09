@@ -1,11 +1,10 @@
 package lisp.function.subr;
 
-import context.Contexts;
 import lisp.AbstrSubr;
-import lisp.Nil;
 import lisp.Scons;
 import lisp.Symbol;
 import lisp._Sexpr;
+import context.Contexts;
 import exception.LispException;
 
 public class Set extends AbstrSubr{
@@ -44,8 +43,10 @@ public class Set extends AbstrSubr{
 		if(!(param.getCar() instanceof Symbol))
 			throw new LispException("Error : trying to apply SET to another thing than a Symbol");
 		else{
-			Contexts.changeSexprInContexts((Symbol)param.getCar(), param.getCdr());
-			return param.getCdr();
+			Contexts.changeSexprInContexts((Symbol)param.getCar(), param.getCdr().getCar());
+			if(param.getCdr().getCar() instanceof Scons)
+				((Scons)param.getCdr().getCar()).isRoot = true;
+			return param.getCdr().getCar();
 		}
 	}
 }

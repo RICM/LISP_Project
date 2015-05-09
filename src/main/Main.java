@@ -25,21 +25,19 @@ public class Main {
 				Symbol quit = new Symbol("QUIT");
 				Symbol eq = new Symbol("EQ");
 				Symbol set = new Symbol("SET");
-				Symbol a = new Symbol("A");
-				Symbol b = new Symbol("B"); Symbol bassoc = new Symbol("Baba");
-				Symbol c = new Symbol("C");
-				Symbol d = new Symbol("D");
+				Symbol de = new Symbol("DE");
+				Symbol imp = new Symbol("IMPLODE");
+				Symbol prt = new Symbol("PRINT");
 				Contexts.addContext();
-				Contexts.addSymbolToFirstContext(a, a);
-				Contexts.addSymbolToFirstContext(b, bassoc);
-				Contexts.addSymbolToFirstContext(c, c);
-				Contexts.addSymbolToFirstContext(d, d);
 				Contexts.addSymbolToFirstContext(car, new Car());
 				Contexts.addSymbolToFirstContext(cdr, new Cdr());
 				Contexts.addSymbolToFirstContext(cons, new Cons());
 				Contexts.addSymbolToFirstContext(atom, new Atom());
 				Contexts.addSymbolToFirstContext(eq, new Eq());
 				Contexts.addSymbolToFirstContext(set, new Set());
+				Contexts.addSymbolToFirstContext(de, new Define());
+				Contexts.addSymbolToFirstContext(imp, new Implode());
+				Contexts.addSymbolToFirstContext(prt, new Print());
 				Contexts.addSymbolToFirstContext(quote, new Quote());
 				Contexts.addSymbolToFirstContext(quit, new Quit());
 				
