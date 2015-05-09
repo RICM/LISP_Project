@@ -32,7 +32,7 @@ public abstract class AbstrSubr extends AbstrPrimitive{
 		//System.out.println(fun.getClass().getName()+" : parameters origin list\t\t"+tmp);
 		
 		// evaluate the parameters
-		while(tmp != null){
+		while(tmp != null && tmp != Nil.nil){
 			//System.out.println(fun.getClass().getName()+" : parameter to add\t\t"+tmp.getCar());
 			if(tmp instanceof Scons){
 				if(tmp.getCar().eval() instanceof _Function){
@@ -58,9 +58,9 @@ public abstract class AbstrSubr extends AbstrPrimitive{
 		else{
 			while(!parametersList.isEmpty()){
 				if(evalSexpr == null)
-					evalSexpr = new Scons(parametersList.get(parametersList.size()-1), Nil.nil);
+					evalSexpr = new Scons(parametersList.get(parametersList.size()-1), Nil.nil, false);
 				else
-					evalSexpr = new Scons(parametersList.get(parametersList.size()-1), evalSexpr);
+					evalSexpr = new Scons(parametersList.get(parametersList.size()-1), evalSexpr, false);
 				
 				parametersList.remove(parametersList.size()-1);
 			}
