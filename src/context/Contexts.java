@@ -63,8 +63,17 @@ public class Contexts {
 			}
 			loopVar--;
 		}
-		System.out.println("Not found");
+		//System.out.println(symbol+" : Not found");
 		return null;
+	}
+	
+	/**
+	 * 
+	 * @param symbol
+	 * @return
+	 */
+	public static void changeSexprInContexts(Symbol symbol, _Sexpr expression){
+		contexts.getFirst().setValue(symbol, expression);
 	}
 	
 	/**
