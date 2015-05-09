@@ -8,6 +8,7 @@ public class Scons implements _Slist{
 	 */
 	private _Sexpr car;
 	private _Sexpr cdr;
+	public boolean isRoot = true;
 	
 	/**
 	 * @return car The _Sexpr car
@@ -27,6 +28,11 @@ public class Scons implements _Slist{
 	public Scons(_Sexpr car, _Sexpr cdr){
 		this.car = car;
 		this.cdr = cdr;
+		
+		if(this.car instanceof Scons)
+			((Scons)this.car).isRoot = false;
+		if(this.cdr instanceof Scons)
+			((Scons)this.cdr).isRoot = false;
 	}
 	
 	/**
@@ -79,6 +85,13 @@ public class Scons implements _Slist{
 	}
 	
 	public String toString(){
-		return "(" + this.car.toString() + " . " + this.cdr.toString() + ")";
+		//DEBUG
+ 		//return "(" + this.car.toString() + " . " + this.cdr.toString() + ")";
+		
+		String str = ((this.cdr == Nil.nil && this.car instanceof Scons) || this.isRoot)? "(" : "";
+		str += this.car;
+		str += (this.cdr == Nil.nil)? "" : " "+this.cdr;
+		str += ((this.cdr == Nil.nil && this.car instanceof Scons) || this.isRoot)? ")" : "";
+		return str;
 	}
 }

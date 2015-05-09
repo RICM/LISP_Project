@@ -3,6 +3,7 @@ package main;
 import lisp.*;
 import lisp.function.subr.Car;
 import lisp.function.subr.Cdr;
+import lisp.function.subr.Cons;
 import exception.*;
 import reader.*;
 
@@ -17,8 +18,8 @@ public class Main {
 		
 			try {
 				GrammaireLISP parser = new GrammaireLISP(System.in);
-				//_Sexpr s = parser.read();
-				_Sexpr s = parser.read("(CAR (CAR(CDR(A(A(A B C))))))");
+				_Sexpr s = parser.read();
+				//_Sexpr s = parser.read("(CONS (A B) (A))");
 				_Sexpr s2 = parser.importe("boot");
 				
 				
@@ -28,6 +29,7 @@ public class Main {
 				
 				Symbol car = new Symbol("CAR");
 				Symbol cdr = new Symbol("CDR");
+				Symbol cons = new Symbol("CONS");
 				Symbol a = new Symbol("A");
 				Symbol b = new Symbol("B");
 				Symbol c = new Symbol("C");
@@ -37,11 +39,12 @@ public class Main {
 				Contexts.addSymbolToFirstContext(c, c);
 				Contexts.addSymbolToFirstContext(car, new Car());
 				Contexts.addSymbolToFirstContext(cdr, new Cdr());
+				Contexts.addSymbolToFirstContext(cons, new Cons());
 				
 				System.out.println(s);
-				System.out.println(s.eval());/*
+				System.out.println(s.eval());
 				
-				_Sexpr stest = new Scons(car, new Scons(new Scons(a, new Scons(b, new Scons(c, Nil.nil))), Nil.nil));
+				/*_Sexpr stest = new Scons(car, new Scons(new Scons(a, new Scons(b, new Scons(c, Nil.nil))), Nil.nil));
 				_Sexpr result = stest.eval();
 				System.out.println(result.toString());*/
 			} catch (LispException e) {

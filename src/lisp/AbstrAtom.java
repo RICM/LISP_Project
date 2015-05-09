@@ -10,7 +10,7 @@ import exception.LispException;
 	 * @throws LispException when the S-GRAPH is an atom.
 	 */
 	public _Sexpr getCar() throws LispException{
-		throw new LispException("Unvalid function for atome.");
+		throw new LispException(this+" : Unvalid function for atome.");
 	}
 	
 	/**
@@ -20,6 +20,6 @@ import exception.LispException;
 	 * @throws LispException when the S-GRAPH is an atom.
 	 */
 	public _Sexpr getCdr() throws LispException{
-		throw new LispException("Unvalid function for atome.");
+		throw new LispException(this+" : Unvalid function for atome.");
 	}
 }

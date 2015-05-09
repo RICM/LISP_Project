@@ -41,7 +41,7 @@ public class Cdr extends AbstrSubr{
 			throw new LispException ("Invalid apply of CDR to a Symbol");
 		}
 		else{
-			return param.getCdr();
+			return new Scons(param.getCdr(), Nil.nil);
 		}
 	}
 		

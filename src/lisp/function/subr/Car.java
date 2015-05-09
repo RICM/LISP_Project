@@ -39,8 +39,12 @@ public class Car extends AbstrSubr{
 	public _Sexpr apply(_Sexpr param) throws LispException{
 		if(param instanceof Symbol){
 			throw new LispException("Error : trying to apply car to a Symbol");
-		} else {
-			return param.getCar();
+		} else{
+			if(param.getCar() instanceof Scons && param.getCdr() == Nil.nil){
+				return param.getCar().getCar();
+			}
+			else
+				return param.getCar();
 		}
 	}
 	
