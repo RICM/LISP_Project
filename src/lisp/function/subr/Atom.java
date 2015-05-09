@@ -15,7 +15,7 @@ public class Atom extends AbstrSubr {
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException {
 		if(param instanceof Symbol || param instanceof Nil){
-			return new Scons(new Symbol("t"), Nil.nil);
+			return new Symbol("T");
 		}
 		else{
 			return Nil.nil;
