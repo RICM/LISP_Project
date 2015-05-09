@@ -9,6 +9,7 @@ public class Scons implements _Slist{
 	private _Sexpr car;
 	private _Sexpr cdr;
 	public boolean isRoot = true;
+	public boolean isPaired = false;
 	
 	/**
 	 * @return car The _Sexpr car
@@ -24,8 +25,9 @@ public class Scons implements _Slist{
 	 * The constructor
 	 * @param car _Sexpr car
 	 * @param cdr _Sexpr cdr
+	 * @param isPaired TODO
 	 */
-	public Scons(_Sexpr car, _Sexpr cdr){
+	public Scons(_Sexpr car, _Sexpr cdr, boolean isPaired){
 		this.car = car;
 		this.cdr = cdr;
 		
@@ -33,6 +35,8 @@ public class Scons implements _Slist{
 			((Scons)this.car).isRoot = false;
 		if(this.cdr instanceof Scons)
 			((Scons)this.cdr).isRoot = false;
+		
+		this.isPaired = isPaired;
 	}
 	
 	/**
@@ -56,15 +60,16 @@ public class Scons implements _Slist{
 		_Sexpr evaluation = car;
 		
 		if (evaluation == Nil.nil){
-			throw new LispException("Dont expect nil as functor of Scons");
+			//throw new LispException("Dont expect nil as functor of Scons");
+			return Nil.nil;
 		}else if(evaluation instanceof Scons){
 			if(evaluation.getCar() instanceof Symbol){
 				if(((Symbol) evaluation.getCar()).name.equals("lambda"))
-					return new Expr().apply(new Scons(evaluation.getCdr(), this.getCdr()));
+					return new Expr().apply(new Scons(evaluation.getCdr(), this.getCdr(), false));
 				else if(((Symbol) evaluation.getCar()).name.equals("flambda"))
-					return new Fexpr().apply(new Scons(evaluation.getCdr(), this.getCdr()));
+					return new Fexpr().apply(new Scons(evaluation.getCdr(), this.getCdr(), false));
 				else
-					return new Scons(evaluation.eval(), this.getCdr().eval());
+					return new Scons(evaluation.eval(), this.getCdr().eval(), false);
 			}else{
 				throw new LispException("Unexpected typo found as functor of Scons");
 			}
@@ -78,20 +83,28 @@ public class Scons implements _Slist{
 			else if(evaluation.eval() instanceof AbstrFsubr)
 				return ((AbstrFsubr)evaluation.eval()).exec((_Function)evaluation.eval(), this.getCdr());
 			else
-				return new Scons(evaluation.eval(), getCdr().eval());
+				return new Scons(evaluation.eval(), getCdr().eval(), false);
 		}else{
 			throw new LispException("Unexpected typo found as functor of Scons");
 		}
 	}
 	
 	public String toString(){
+		String str = (this.isRoot)? "(" : "";
+		str += (this.car instanceof Scons)? "(": "";
+		str += this.car.toString();
+		str += (this.car instanceof Scons)? ")" : "";
+		if(!((this.car instanceof Symbol && this.cdr == Nil.nil) 
+				|| (this.car instanceof Scons && this.cdr == Nil.nil)
+				|| this.cdr == Nil.nil))
+			if(this.isPaired)
+				str += " . " + this.cdr.toString();
+			else
+				str += " " + this.cdr.toString();
+		str += (this.isRoot)? ")" : "";
+		return str;
+		
 		//DEBUG
  		//return "(" + this.car.toString() + " . " + this.cdr.toString() + ")";
-		
-		String str = ((this.cdr == Nil.nil && this.car instanceof Scons) || this.isRoot)? "(" : "";
-		str += this.car;
-		str += (this.cdr == Nil.nil)? "" : " "+this.cdr;
-		str += ((this.cdr == Nil.nil && this.car instanceof Scons) || this.isRoot)? ")" : "";
-		return str;
 	}
 }

@@ -12,7 +12,7 @@ public class Symbol extends AbstrAtom {
 	 * @param name
 	 */
 	public Symbol(String name){
-		this.name = name;
+		this.name = name.toUpperCase();
 	}	
 	
 	/**

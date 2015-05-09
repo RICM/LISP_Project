@@ -1,15 +1,19 @@
 package lisp.function.subr;
 
+import context.Contexts;
+import lisp.AbstrSubr;
+import lisp.Nil;
+import lisp.Scons;
+import lisp.Symbol;
+import lisp._Sexpr;
 import exception.LispException;
 
-import lisp.*;
-
-public class Car extends AbstrSubr{
+public class Set extends AbstrSubr{
 
 	/**
 	 * Private Attributes
 	 */
-	private int numberOfParam = 1;
+	private int numberOfParam = 2;
 
 	/**
 	 * Function used to evaluate a Car
@@ -37,19 +41,11 @@ public class Car extends AbstrSubr{
 	 */
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
-		if(param instanceof Symbol){
-			throw new LispException("Error : trying to apply CAR to a Symbol");
-		} else{
-			if(param.getCar() instanceof Scons && param.getCdr() == Nil.nil){
-				if(param.getCar().getCar() instanceof Scons)
-					((Scons)param.getCar().getCar()).isRoot = true;
-				return param.getCar().getCar();
-			}
-			else{
-				if(param.getCar() instanceof Scons)
-					((Scons)param.getCar()).isRoot = true;
-				return param.getCar();
-			}
+		if(!(param.getCar() instanceof Symbol))
+			throw new LispException("Error : trying to apply SET to another thing than a Symbol");
+		else{
+			Contexts.changeSexprInContexts((Symbol)param.getCar(), param.getCdr());
+			return param.getCdr();
 		}
 	}
 }

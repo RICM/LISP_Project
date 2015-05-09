@@ -38,10 +38,16 @@ public class Cdr extends AbstrSubr{
 	public _Sexpr apply(_Sexpr param) throws LispException{
 		
 		if (param instanceof Symbol){
-			throw new LispException ("Invalid apply of CDR to a Symbol");
+			throw new LispException ("Error : trying to apply CDR to a Symbol");
 		}
 		else{
-			return new Scons(param.getCdr(), Nil.nil);
+			Scons out;
+			if(param instanceof Scons && param.getCdr() == Nil.nil && !(param.getCar() instanceof Symbol))
+				out = new Scons(param.getCar().getCdr(), Nil.nil, false);
+			else
+				out = new Scons(param.getCdr(), Nil.nil, false);
+			out.isRoot = false;
+			return out;
 		}
 	}
 		

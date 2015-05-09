@@ -1,9 +1,8 @@
 package main;
 
 import lisp.*;
-import lisp.function.subr.Car;
-import lisp.function.subr.Cdr;
-import lisp.function.subr.Cons;
+import lisp.function.subr.*;
+import lisp.function.fsubr.*;
 import exception.*;
 import reader.*;
 
@@ -17,36 +16,54 @@ public class Main {
 		
 		
 			try {
-				GrammaireLISP parser = new GrammaireLISP(System.in);
-				_Sexpr s = parser.read();
-				//_Sexpr s = parser.read("(CONS (A B) (A))");
-				_Sexpr s2 = parser.importe("boot");
-				
-				
-				// Test de l'architecture du projet
-				//_Sexpr t = new Scons(new Scons(new Symbol("b"), new Scons(new Scons(new Symbol("c"), new Symbol("d")), Nil.nil)), new Scons(new Symbol("a"), new Scons(new Symbol("e"), Nil.nil)));
-				//System.out.println(t.toString());
 				
 				Symbol car = new Symbol("CAR");
 				Symbol cdr = new Symbol("CDR");
 				Symbol cons = new Symbol("CONS");
+				Symbol atom = new Symbol("ATOM");
+				Symbol quote = new Symbol("QUOTE");
+				Symbol quit = new Symbol("QUIT");
+				Symbol eq = new Symbol("EQ");
+				Symbol set = new Symbol("SET");
 				Symbol a = new Symbol("A");
-				Symbol b = new Symbol("B");
+				Symbol b = new Symbol("B"); Symbol bassoc = new Symbol("Baba");
 				Symbol c = new Symbol("C");
+				Symbol d = new Symbol("D");
 				Contexts.addContext();
 				Contexts.addSymbolToFirstContext(a, a);
-				Contexts.addSymbolToFirstContext(b, b);
+				Contexts.addSymbolToFirstContext(b, bassoc);
 				Contexts.addSymbolToFirstContext(c, c);
+				Contexts.addSymbolToFirstContext(d, d);
 				Contexts.addSymbolToFirstContext(car, new Car());
 				Contexts.addSymbolToFirstContext(cdr, new Cdr());
 				Contexts.addSymbolToFirstContext(cons, new Cons());
+				Contexts.addSymbolToFirstContext(atom, new Atom());
+				Contexts.addSymbolToFirstContext(eq, new Eq());
+				Contexts.addSymbolToFirstContext(set, new Set());
+				Contexts.addSymbolToFirstContext(quote, new Quote());
+				Contexts.addSymbolToFirstContext(quit, new Quit());
 				
-				System.out.println(s);
-				System.out.println(s.eval());
+				GrammaireLISP parser = new GrammaireLISP(System.in);
+				_Sexpr s2 = parser.importe("boot");
+				//_Sexpr s = parser.read("(CONS ( A B)A)");
+				_Sexpr s;
+				int i=0;
+				do{
+					System.out.print("["+i+"]\t");
+					s = parser.read();
+					
+					//System.out.println(s);
+					try{
+						System.out.println(s.eval());
+					}catch (LispException e){
+						System.out.println("--> "+e.getMessage());
+					}
+					
+					i++;
+				}while(!(s instanceof Scons 
+						&& ((Scons)s).getCar() instanceof Symbol 
+						&& ((Symbol)((Scons)s).getCar()).name.equals("QUIT")));
 				
-				/*_Sexpr stest = new Scons(car, new Scons(new Scons(a, new Scons(b, new Scons(c, Nil.nil))), Nil.nil));
-				_Sexpr result = stest.eval();
-				System.out.println(result.toString());*/
 			} catch (LispException e) {
 				// TODO Auto-generated catch block
 				System.out.println(e.getMessage());

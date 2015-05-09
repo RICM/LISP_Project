@@ -27,6 +27,18 @@ public class Context {
 	}
 	
 	/**
+	 * Function used to change the _Sexpr associated to a symbol
+	 * If it's not present, add
+	 * @param symbol The Symbol used as key
+	 * @param expression The new expression to reference
+	 */
+	public void setValue(Symbol symbol, _Sexpr expression){
+		if(this.context.containsKey(symbol.hashCode()))
+			this.context.replace(symbol.hashCode(), expression);
+		else
+			this.insertValue(symbol, expression);
+	}
+	/**
 	 * Function used to insert an association of Symbol and _Sexpr
 	 * if Symbol is already used in association replaces old _Sexpr by new _Sexpr
 	 * else insert new association

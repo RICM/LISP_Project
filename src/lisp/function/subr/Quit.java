@@ -1,15 +1,15 @@
 package lisp.function.subr;
 
+import lisp.AbstrSubr;
+import lisp.Symbol;
+import lisp._Sexpr;
 import exception.LispException;
 
-import lisp.*;
-
-public class Car extends AbstrSubr{
-
+public class Quit extends AbstrSubr{
 	/**
 	 * Private Attributes
 	 */
-	private int numberOfParam = 1;
+	private int numberOfParam = 0;
 
 	/**
 	 * Function used to evaluate a Car
@@ -37,19 +37,6 @@ public class Car extends AbstrSubr{
 	 */
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
-		if(param instanceof Symbol){
-			throw new LispException("Error : trying to apply CAR to a Symbol");
-		} else{
-			if(param.getCar() instanceof Scons && param.getCdr() == Nil.nil){
-				if(param.getCar().getCar() instanceof Scons)
-					((Scons)param.getCar().getCar()).isRoot = true;
-				return param.getCar().getCar();
-			}
-			else{
-				if(param.getCar() instanceof Scons)
-					((Scons)param.getCar()).isRoot = true;
-				return param.getCar();
-			}
-		}
+		return new Symbol("Au revoir ! :D ");
 	}
 }

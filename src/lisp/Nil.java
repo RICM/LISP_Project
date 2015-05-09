@@ -15,7 +15,7 @@ public class Nil extends AbstrAtom implements _Slist {
 	 * @return a S-EXPR
 	 * @throws LispException when the S-GRAPH is an atom.
 	 */
-	public _Sexpr getCar() throws LispException {return null;}
+	public _Sexpr getCar() throws LispException {return Nil.nil;}
 	
 	/**
 	 * Get the list without first element of a S-GRAPH
@@ -23,7 +23,7 @@ public class Nil extends AbstrAtom implements _Slist {
 	 * @return a S-EXPR
 	 * @throws LispException when the S-GRAPH is an atom.
 	 */
-	public _Sexpr getCdr() throws LispException {return null;}
+	public _Sexpr getCdr() throws LispException {return Nil.nil;}
 	
 	public boolean equals(_Sexpr a){
 		return true;
