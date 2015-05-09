@@ -5,6 +5,7 @@ import lisp.function.subr.Atom;
 import lisp.function.subr.Car;
 import lisp.function.subr.Cdr;
 import lisp.function.subr.Cons;
+import lisp.function.subr.Eq;
 import exception.*;
 import reader.*;
 
@@ -20,7 +21,7 @@ public class Main {
 			try {
 				GrammaireLISP parser = new GrammaireLISP(System.in);
 				//_Sexpr s = parser.read();
-				_Sexpr s = parser.read("(ATOM A )");
+				_Sexpr s = parser.read("(EQ (A A) )");
 				_Sexpr s2 = parser.importe("boot");
 				
 				
@@ -32,6 +33,7 @@ public class Main {
 				Symbol cdr = new Symbol("CDR");
 				Symbol cons = new Symbol("CONS");
 				Symbol atom = new Symbol("ATOM");
+				Symbol eq = new Symbol("EQ");
 				Symbol a = new Symbol("A");
 				Symbol b = new Symbol("B");
 				Symbol c = new Symbol("C");
@@ -43,6 +45,7 @@ public class Main {
 				Contexts.addSymbolToFirstContext(cdr, new Cdr());
 				Contexts.addSymbolToFirstContext(cons, new Cons());
 				Contexts.addSymbolToFirstContext(atom, new Atom());
+				Contexts.addSymbolToFirstContext(eq, new Eq());
 				
 				System.out.println(s);
 				System.out.println(s.eval());
