@@ -28,6 +28,14 @@ public class Cons extends AbstrSubr{
 
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException {
-		return new Scons(param.getCar(), param.getCdr());
+		if((param.getCar() instanceof Scons 
+					&& ((Scons)param.getCar()).getCar() instanceof Symbol 
+					&& ((Scons)param.getCar()).getCdr() == Nil.nil) 
+				|| (param.getCdr() instanceof Scons 
+						&& ((Scons)param.getCdr()).getCar() instanceof Symbol 
+						&& ((Scons)param.getCdr()).getCdr() == Nil.nil)){
+			return new Scons(param.getCar(), param.getCdr(), true);
+		}
+		return new Scons(param.getCar(), param.getCdr(), false);
 	}
 }
