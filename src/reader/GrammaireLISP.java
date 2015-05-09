@@ -17,6 +17,7 @@ public class GrammaireLISP implements GrammaireLISPConstants {
 	 */
 
         public _Sexpr read() throws LispException, ParseException{
+                ReInit(this.in);
                 return SEXPR();
         }
 
@@ -48,7 +49,7 @@ public class GrammaireLISP implements GrammaireLISPConstants {
     case QUOT:
       jj_consume_token(QUOT);
       se = SEXPR();
-                {if (true) return new Scons(new Symbol("QUOTE"), new Scons(se, Nil.nil));}
+                {if (true) return new Scons(new Symbol("QUOTE"), new Scons(se, Nil.nil, true), false);}
       break;
     case IDENT:
       se = SYMBOLE();
@@ -103,14 +104,14 @@ public class GrammaireLISP implements GrammaireLISPConstants {
       jj_consume_token(PT);
       pairePointee = SEXPR();
       cdr = DEB_LISTE();
-                {if (true) return new Scons(pairePointee, cdr);}
+                {if (true) return new Scons(pairePointee, cdr, true);}
       break;
     case PO:
     case QUOT:
     case IDENT:
       car = SEXPR();
       cdr = DEB_LISTE();
-                {if (true) return new Scons(car, cdr);}
+                {if (true) return new Scons(car, cdr, false);}
       break;
     default:
       jj_la1[2] = jj_gen;
