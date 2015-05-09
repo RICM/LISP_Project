@@ -60,7 +60,8 @@ public class Scons implements _Slist{
 		_Sexpr evaluation = car;
 		
 		if (evaluation == Nil.nil){
-			throw new LispException("Dont expect nil as functor of Scons");
+			//throw new LispException("Dont expect nil as functor of Scons");
+			return Nil.nil;
 		}else if(evaluation instanceof Scons){
 			if(evaluation.getCar() instanceof Symbol){
 				if(((Symbol) evaluation.getCar()).name.equals("lambda"))
@@ -89,35 +90,18 @@ public class Scons implements _Slist{
 	}
 	
 	public String toString(){
-		/*if(this.isRoot)
-			return "(" + this.car.toString() + " " + this.cdr.toString() + ")";
-		if(this.car instanceof Symbol && this.cdr == Nil.nil)
-			return this.car.toString();
-		if(this.car instanceof Symbol && this.cdr instanceof Scons)
-			return this.car.toString() + " " + this.cdr.toString();
-		if(this.car instanceof Scons && this.cdr == Nil.nil)
-			return "(" + this.car.toString() + ")";
-		/*if(this.car instanceof Scons && this.cdr != Nil.nil)
-			return "((" + this.car.toString() + ") " + this.cdr.toString()+")";*/
-		//if(this.car instanceof Scons)
-			//return "(" + this.car.toString() + ") " + this.cdr.toString();
-		
 		String str = (this.isRoot)? "(" : "";
 		str += (this.car instanceof Scons)? "(": "";
 		str += this.car.toString();
 		str += (this.car instanceof Scons)? ")" : "";
-		if(!((this.car instanceof Symbol && this.cdr == Nil.nil) || (this.car instanceof Scons && this.cdr == Nil.nil)))
+		if(!((this.car instanceof Symbol && this.cdr == Nil.nil) 
+				|| (this.car instanceof Scons && this.cdr == Nil.nil)
+				|| this.cdr == Nil.nil))
 			if(this.isPaired)
 				str += " . " + this.cdr.toString();
 			else
 				str += " " + this.cdr.toString();
 		str += (this.isRoot)? ")" : "";
-		
-		
-		/*String str = ((this.cdr == Nil.nil && this.car instanceof Scons) || this.isRoot)? "(" : "";
-		str += this.car;
-		str += (this.cdr == Nil.nil)? "" : " "+this.cdr;
-		str += ((this.cdr == Nil.nil && this.car instanceof Scons) || this.isRoot)? ")" : "";*/
 		return str;
 		
 		//DEBUG
