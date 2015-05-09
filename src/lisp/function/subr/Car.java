@@ -47,5 +47,4 @@ public class Car extends AbstrSubr{
 				return param.getCar();
 		}
 	}
-	
 }
