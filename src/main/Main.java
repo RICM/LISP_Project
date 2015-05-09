@@ -2,6 +2,7 @@ package main;
 
 import lisp.*;
 import lisp.function.subr.*;
+import lisp.function.fsubr.*;
 import exception.*;
 import reader.*;
 
@@ -20,20 +21,26 @@ public class Main {
 				Symbol cdr = new Symbol("CDR");
 				Symbol cons = new Symbol("CONS");
 				Symbol atom = new Symbol("ATOM");
+				Symbol quote = new Symbol("QUOTE");
 				Symbol quit = new Symbol("QUIT");
 				Symbol eq = new Symbol("EQ");
+				Symbol set = new Symbol("SET");
 				Symbol a = new Symbol("A");
-				Symbol b = new Symbol("B");
+				Symbol b = new Symbol("B"); Symbol bassoc = new Symbol("Baba");
 				Symbol c = new Symbol("C");
+				Symbol d = new Symbol("D");
 				Contexts.addContext();
 				Contexts.addSymbolToFirstContext(a, a);
-				Contexts.addSymbolToFirstContext(b, b);
+				Contexts.addSymbolToFirstContext(b, bassoc);
 				Contexts.addSymbolToFirstContext(c, c);
+				Contexts.addSymbolToFirstContext(d, d);
 				Contexts.addSymbolToFirstContext(car, new Car());
 				Contexts.addSymbolToFirstContext(cdr, new Cdr());
 				Contexts.addSymbolToFirstContext(cons, new Cons());
 				Contexts.addSymbolToFirstContext(atom, new Atom());
 				Contexts.addSymbolToFirstContext(eq, new Eq());
+				Contexts.addSymbolToFirstContext(set, new Set());
+				Contexts.addSymbolToFirstContext(quote, new Quote());
 				Contexts.addSymbolToFirstContext(quit, new Quit());
 				
 				GrammaireLISP parser = new GrammaireLISP(System.in);
@@ -46,7 +53,12 @@ public class Main {
 					s = parser.read();
 					
 					//System.out.println(s);
-					System.out.println(s.eval());
+					try{
+						System.out.println(s.eval());
+					}catch (LispException e){
+						System.out.println("--> "+e.getMessage());
+					}
+					
 					i++;
 				}while(!(s instanceof Scons 
 						&& ((Scons)s).getCar() instanceof Symbol 
