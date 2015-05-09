@@ -36,6 +36,8 @@ public class Cons extends AbstrSubr{
 						&& ((Scons)param.getCdr()).getCdr() == Nil.nil)){
 			return new Scons(param.getCar(), param.getCdr(), true);
 		}
+		if(param.getCdr() instanceof Scons && param.getCdr().getCdr() == Nil.nil)
+			return new Scons(param.getCar(), param.getCdr().getCar(), false);
 		return new Scons(param.getCar(), param.getCdr(), false);
 	}
 }
