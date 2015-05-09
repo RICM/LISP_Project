@@ -64,9 +64,9 @@ public class Scons implements _Slist{
 			return Nil.nil;
 		}else if(evaluation instanceof Scons){
 			if(evaluation.getCar() instanceof Symbol){
-				if(((Symbol) evaluation.getCar()).name.equals("lambda"))
+				if(((Symbol) evaluation.getCar()).name.equals("LAMBDA"))
 					return new Expr().apply(new Scons(evaluation.getCdr(), this.getCdr(), false));
-				else if(((Symbol) evaluation.getCar()).name.equals("flambda"))
+				else if(((Symbol) evaluation.getCar()).name.equals("FLAMBDA"))
 					return new Fexpr().apply(new Scons(evaluation.getCdr(), this.getCdr(), false));
 				else
 					return new Scons(evaluation.eval(), this.getCdr().eval(), false);
