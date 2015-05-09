@@ -1,19 +1,16 @@
-package lisp.function.fsubr;
+package lisp.function.subr;
 
-import lisp.AbstrFsubr;
 import lisp.AbstrSubr;
 import lisp.Nil;
-import lisp.Scons;
-import lisp.Symbol;
 import lisp._Sexpr;
 import exception.LispException;
 
-public class Quote extends AbstrFsubr{
+public class Print extends AbstrSubr{
 
 	/**
 	 * Private Attributes
 	 */
-	private int numberOfParam = 1;
+	private int numberOfParam = Integer.MAX_VALUE;
 
 	/**
 	 * Function used to evaluate a Car
@@ -41,6 +38,14 @@ public class Quote extends AbstrFsubr{
 	 */
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
-		return param.getCar();
+		_Sexpr tmp = param;
+		_Sexpr out = null;
+		while(tmp != Nil.nil){
+			if(tmp.getCdr() == Nil.nil)
+				out = tmp.getCar();
+			tmp = tmp.getCdr();
+		}
+		System.out.println(param.toString().substring(1, param.toString().length()-1));
+		return out;
 	}
 }
