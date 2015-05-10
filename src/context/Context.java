@@ -27,16 +27,6 @@ public class Context {
 	}
 	
 	/**
-	 * Function used to change the _Sexpr associated to a symbol
-	 * If it's not present, add
-	 * @param symbol The Symbol used as key
-	 * @param expression The new expression to reference
-	 */
-	public void setValue(Symbol symbol, _Sexpr expression){
-		this.context.put(symbol.hashCode(), expression);
-	}
-	
-	/**
 	 * Function used to insert an association of Symbol and _Sexpr
 	 * if Symbol is already used in association replaces old _Sexpr by new _Sexpr
 	 * else insert new association
@@ -45,5 +35,16 @@ public class Context {
 	 */
 	public void insertValue(Symbol symbol, _Sexpr expression){
 		this.context.put(symbol.hashCode(), expression);
+	}
+	
+	/**
+	 * Function used to insert an association of Symbol and _Sexpr
+	 * if Symbol is already used in association replaces old _Sexpr by new _Sexpr
+	 * else insert new association
+	 * @param symbol The integer used as key
+	 * @param expression The expression to reference
+	 */
+	public void insertValue(int symbol, _Sexpr expression){
+		this.context.put(symbol, expression);
 	}
 }

@@ -1,16 +1,13 @@
 package lisp.function.subr;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
+import lisp.AbstrSubr;
+import lisp.Symbol;
+import lisp._Sexpr;
 import reader.GrammaireLISP;
 import reader.ParseException;
 import exception.LispException;
-import lisp.AbstrSubr;
-import lisp.Nil;
-import lisp.Symbol;
-import lisp._Sexpr;
 
 public class Load extends AbstrSubr {
 
@@ -24,26 +21,19 @@ public class Load extends AbstrSubr {
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException {
 		if (param instanceof Symbol){
+			GrammaireLISP parser = new GrammaireLISP(System.in);
+			_Sexpr s = null;
+			
 			try {
-				GrammaireLISP parser = new GrammaireLISP(System.in);
-				
-				
-				Scanner scanner=new Scanner(new File(param.toString()));
-				while (scanner.hasNextLine()) {
-					_Sexpr s = parser.read(scanner.nextLine());
-					System.out.println(s.eval());
-				}
-				scanner.close();
-				
-				
+				s = parser.importe(param.toString().toLowerCase(), true);
 			} catch (ParseException e) {
 				e.printStackTrace();
-			}catch (FileNotFoundException e) {
+			} catch (FileNotFoundException e) {
 				System.out.println("Failed to open file : ");
 				System.out.println(e.getMessage());
 			}
 			System.out.println("End of file reading");
-			return null;
+			return s;
 		}
 		else{
 			throw new LispException ("Error : trying to apply LOAD to something which is not a Symbol");

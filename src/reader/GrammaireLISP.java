@@ -10,6 +10,7 @@ public class GrammaireLISP implements GrammaireLISPConstants {
 
         /** le support de lecture */
         protected java.io.Reader in = new BufferedReader(new InputStreamReader (System.in));
+        private String previousFile = "";
 
         /** lecture d'une S-EXPR au terminal
 	 *  @return Sexpr : la Sexpr construite.
@@ -38,9 +39,26 @@ public class GrammaireLISP implements GrammaireLISPConstants {
 	 *  @return Sexpr : synbole du nom du fichier
 	 *  @throws LispException une erreur de lecture
 	 */
-        public _Sexpr importe(String s) throws LispException, ParseException, FileNotFoundException{
-                ReInit(new BufferedReader(new FileReader (s)));
-        return SEXPR();
+        public _Sexpr importe(String s, boolean print) throws LispException, ParseException, FileNotFoundException{
+                _Sexpr expr;
+        BufferedReader buf = new BufferedReader(new FileReader (s));
+        ReInit(buf);
+        boolean eof = false;
+        while(!eof){
+                try
+                {
+                        expr = SEXPR();
+                        if(print)
+                                System.out.println(expr.eval());
+                }catch(ParseException e)
+                {
+                  if(!e.getMessage().contains("<EOF>"))
+                        throw e;
+                  else
+                        eof = true;
+                }
+        }
+        return new Symbol(s);
         }
 
   final public _Sexpr SEXPR() throws ParseException {
