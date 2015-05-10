@@ -2,17 +2,15 @@ package lisp.function.subr;
 
 import lisp.AbstrSubr;
 import lisp.Nil;
-import lisp.Scons;
-import lisp.Symbol;
 import lisp._Sexpr;
 import exception.LispException;
 
-public class Print extends AbstrSubr{
+public class Eprogn extends AbstrSubr{
 
 	/**
 	 * Private Attributes
 	 */
-	private int numberOfParam = Integer.MAX_VALUE;
+	private int numberOfParam = 1;
 
 	/**
 	 * Function used to evaluate a Car
@@ -41,18 +39,12 @@ public class Print extends AbstrSubr{
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
 		_Sexpr tmp = param;
-		_Sexpr out = param;
-		while(tmp != Nil.nil && !(tmp instanceof Symbol)){
-			if(tmp.getCdr() == Nil.nil)
-				out = tmp.getCar();
+		_Sexpr out = null;
+		while(tmp != Nil.nil){
+			out = tmp.getCar().eval();
 			tmp = tmp.getCdr();
 		}
-		if(out instanceof Scons){
-			((Scons)out).isRoot = true;
-			System.out.println(param.toString().substring(1, param.toString().length()-1));
-		}
-		else
-			System.out.println(out);
 		return out;
 	}
 }
+
