@@ -7,10 +7,11 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import lisp.*;
+import lisp.Symbol;
+import lisp._Sexpr;
+import lisp.function.fsubr.Cond;
 import lisp.function.fsubr.Define;
 import lisp.function.fsubr.Fdefine;
-import lisp.function.fsubr.Quote;
 import lisp.function.subr.Atom;
 import lisp.function.subr.Car;
 import lisp.function.subr.Cdr;
@@ -70,9 +71,7 @@ public class Contexts {
 		// FSUBR
 		contexts.getFirst().insertValue("DE".hashCode(), new Define());
 		contexts.getFirst().insertValue("DF".hashCode(), new Fdefine());
-		
-		// TODO remove
-		//contexts.getFirst().insertValue("QUOTE".hashCode(), new Quote());
+		contexts.getFirst().insertValue("COND".hashCode(), new Cond());
 		
 		contexts.getFirst().insertValue("T".hashCode(), new Symbol("T"));
 	}

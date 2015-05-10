@@ -19,7 +19,7 @@ public class Main {
 				Contexts.setMinimalContexts();
 				GrammaireLISP parser = new GrammaireLISP(System.in);
 				parser.importe("boot", false);
-				Contexts.printScope();
+				//Contexts.printScope();
 				
 				_Sexpr s;
 				int i=0;
