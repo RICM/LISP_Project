@@ -2,6 +2,8 @@ package lisp.function.subr;
 
 import lisp.AbstrSubr;
 import lisp.Nil;
+import lisp.Scons;
+import lisp.Symbol;
 import lisp._Sexpr;
 import exception.LispException;
 
@@ -39,13 +41,18 @@ public class Print extends AbstrSubr{
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
 		_Sexpr tmp = param;
-		_Sexpr out = null;
-		while(tmp != Nil.nil){
+		_Sexpr out = param;
+		while(tmp != Nil.nil && !(tmp instanceof Symbol)){
 			if(tmp.getCdr() == Nil.nil)
 				out = tmp.getCar();
 			tmp = tmp.getCdr();
 		}
-		System.out.println(param.toString().substring(1, param.toString().length()-1));
+		if(out instanceof Scons){
+			((Scons)out).isRoot = true;
+			System.out.println(param.toString().substring(1, param.toString().length()-1));
+		}
+		else
+			System.out.println(out);
 		return out;
 	}
 }
