@@ -1,7 +1,21 @@
 package context;
 
 import java.util.LinkedList;
+
 import lisp.*;
+import lisp.function.fsubr.Define;
+import lisp.function.fsubr.Fdefine;
+import lisp.function.fsubr.Quote;
+import lisp.function.subr.Atom;
+import lisp.function.subr.Car;
+import lisp.function.subr.Cdr;
+import lisp.function.subr.Cons;
+import lisp.function.subr.Eq;
+import lisp.function.subr.Implode;
+import lisp.function.subr.Load;
+import lisp.function.subr.Print;
+import lisp.function.subr.Quit;
+import lisp.function.subr.Set;
 
 public class Contexts {
 	
@@ -30,6 +44,32 @@ public class Contexts {
 	 */
 	public static void addContext(){
 		contexts.add(new Context());
+	}
+	
+	public static void setMinimalContexts(){
+		addContext();
+		
+		// SUBR
+		contexts.getFirst().insertValue("CAR".hashCode(), new Car());
+		contexts.getFirst().insertValue("CDR".hashCode(), new Cdr());
+		contexts.getFirst().insertValue("CONS".hashCode(), new Cons());
+		contexts.getFirst().insertValue("EQ".hashCode(), new Eq());
+		contexts.getFirst().insertValue("ATOM".hashCode(), new Atom());
+		
+		contexts.getFirst().insertValue("IMPLODE".hashCode(), new Implode());
+		contexts.getFirst().insertValue("PRINT".hashCode(), new Print());
+		contexts.getFirst().insertValue("SET".hashCode(), new Set());
+		contexts.getFirst().insertValue("LOAD".hashCode(), new Load());
+		contexts.getFirst().insertValue("QUIT".hashCode(), new Quit());
+		
+		// FSUBR
+		contexts.getFirst().insertValue("DE".hashCode(), new Define());
+		contexts.getFirst().insertValue("DF".hashCode(), new Fdefine());
+		
+		// TODO remove
+		//contexts.getFirst().insertValue("QUOTE".hashCode(), new Quote());
+		
+		contexts.getFirst().insertValue("T".hashCode(), new Symbol("T"));
 	}
 	
 	/**
@@ -73,7 +113,7 @@ public class Contexts {
 	 * @return
 	 */
 	public static void changeSexprInContexts(Symbol symbol, _Sexpr expression){
-		contexts.getFirst().setValue(symbol, expression);
+		contexts.getFirst().insertValue(symbol, expression);
 	}
 	
 	/**
