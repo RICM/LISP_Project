@@ -151,9 +151,7 @@ public class Contexts {
 		ListIterator<Context> listIterator = contexts.listIterator();
         while (listIterator.hasNext()) {
             scope.putAll(listIterator.next().getScopeFromContext());
-            listIterator.remove();
         }
-        System.out.println();
 		return scope;
 	}
 	
@@ -167,7 +165,6 @@ public class Contexts {
 						 +" ---> "
 						 +pair.getValue().toString());
 			 }
-			 it.remove();
 		}
 	}
 }

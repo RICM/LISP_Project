@@ -31,12 +31,14 @@ public class Scope extends AbstrFsubr {
 	}
 	
 	/**
-	 * Function used to apply an _Sexpr to the Car function
-	 * @return _Sexpr The _Sexpr resulting from application
+	 * Function used to apply an _Sexpr to the Scope function
+	 * @return null
 	 * @throws LispException 
 	 */
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
+		context.Contexts.printScope();
 		return null;
 	}
+	
 }
