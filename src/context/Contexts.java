@@ -67,7 +67,9 @@ public class Contexts {
 		contexts.getFirst().insertValue("DF".hashCode(), new Fdefine());
 		
 		// TODO remove
-		contexts.getFirst().insertValue("QUOTE".hashCode(), new Quote());
+		//contexts.getFirst().insertValue("QUOTE".hashCode(), new Quote());
+		
+		contexts.getFirst().insertValue("T".hashCode(), new Symbol("T"));
 	}
 	
 	/**
