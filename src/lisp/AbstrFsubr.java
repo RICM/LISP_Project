@@ -18,7 +18,9 @@ public abstract class AbstrFsubr extends AbstrPrimitive{
 			i++;
 			tmp = tmp.getCdr();
 		}
-		if(i != fun.getNumberOfParam()) throw new LispException("Invalid number of parameters");
+		if(i != fun.getNumberOfParam())
+			if((fun.getNumberOfParam() == Integer.MAX_VALUE && i == 0) || fun.getNumberOfParam() != Integer.MAX_VALUE) 
+				throw new LispException("Invalid number of parameters");
 		return fun.apply(param);
 	}
 }
