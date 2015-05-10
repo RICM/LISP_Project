@@ -25,7 +25,7 @@ public class Load extends AbstrSubr {
 			_Sexpr s = null;
 			
 			try {
-				s = parser.importe(param.toString().toLowerCase(), true);
+				s = parser.importe(param.toString().toLowerCase(), false);
 			} catch (ParseException e) {
 				e.printStackTrace();
 			} catch (FileNotFoundException e) {

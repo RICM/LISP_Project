@@ -55,6 +55,8 @@ public class Fexpr extends AbstrFunction {
 		// evaluation du corps de la fonction
 		//System.out.println("Function : "+prog);
 		_Sexpr out = prog.getCar().eval();
+		if(out instanceof Scons)
+			((Scons)out).isRoot = true;
 		
 		// destruction de la liaison
 		Contexts.removeLastFromContexts();
