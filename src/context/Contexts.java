@@ -1,6 +1,11 @@
 package context;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.ListIterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import lisp.*;
 import lisp.function.fsubr.Define;
@@ -123,5 +128,34 @@ public class Contexts {
 	 */
 	public static void addSymbolToFirstContext(Symbol symbol, _Sexpr expression){
 		contexts.getFirst().insertValue(symbol, expression);
+	}
+	
+	/**
+	 * Function used to get Scope from all the current contexts
+	 * @return HashMap<Symbol, _Sexpr> the hashmap with the scope
+	 */
+	public static HashMap<Symbol, _Sexpr> getScope(){
+		HashMap<Symbol, _Sexpr> scope = new HashMap<Symbol, _Sexpr>();
+		ListIterator<Context> listIterator = contexts.listIterator();
+        while (listIterator.hasNext()) {
+            scope.putAll(listIterator.next().getScopeFromContext());
+            listIterator.remove();
+        }
+        System.out.println();
+		return scope;
+	}
+	
+	public static void printScope(){
+		HashMap<Symbol, _Sexpr> scope = getScope();
+		Iterator<Entry<Symbol, _Sexpr>> it = scope.entrySet().iterator();
+		while (it.hasNext()){
+			 Map.Entry<Symbol,_Sexpr> pair = (Entry<Symbol, _Sexpr>)it.next();
+			 if (pair.getValue() != null && pair.getKey() != null){
+				 System.out.println(pair.getKey().toString()
+						 +" ---> "
+						 +pair.getValue().toString());
+			 }
+			 it.remove();
+		}
 	}
 }
