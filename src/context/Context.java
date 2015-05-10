@@ -71,7 +71,6 @@ public class Context {
 		while (it.hasNext()) {
 	        Map.Entry<Integer,_Sexpr> pair = (Entry<Integer, _Sexpr>)it.next();
 			mapToUpdate.put(symbol_association.get(pair.getKey()), pair.getValue());
-	        it.remove();
 	    }
 		return mapToUpdate;
 	}

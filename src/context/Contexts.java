@@ -16,6 +16,7 @@ import lisp.function.subr.Atom;
 import lisp.function.subr.Car;
 import lisp.function.subr.Cdr;
 import lisp.function.subr.Cons;
+import lisp.function.subr.Eprogn;
 import lisp.function.subr.Eq;
 import lisp.function.subr.Implode;
 import lisp.function.subr.Load;
@@ -64,6 +65,7 @@ public class Contexts {
 		
 		contexts.getFirst().insertValue("IMPLODE".hashCode(), new Implode());
 		contexts.getFirst().insertValue("PRINT".hashCode(), new Print());
+		contexts.getFirst().insertValue("EPROGN".hashCode(), new Eprogn());
 		contexts.getFirst().insertValue("SET".hashCode(), new Set());
 		contexts.getFirst().insertValue("LOAD".hashCode(), new Load());
 		contexts.getFirst().insertValue("QUIT".hashCode(), new Quit());
@@ -74,6 +76,17 @@ public class Contexts {
 		contexts.getFirst().insertValue("COND".hashCode(), new Cond());
 		
 		contexts.getFirst().insertValue("T".hashCode(), new Symbol("T"));
+		
+		contexts.getFirst().insertValue("0".hashCode(), new Symbol("0"));
+		contexts.getFirst().insertValue("1".hashCode(), new Symbol("1"));
+		contexts.getFirst().insertValue("2".hashCode(), new Symbol("2"));
+		contexts.getFirst().insertValue("3".hashCode(), new Symbol("3"));
+		contexts.getFirst().insertValue("4".hashCode(), new Symbol("4"));
+		contexts.getFirst().insertValue("5".hashCode(), new Symbol("5"));
+		contexts.getFirst().insertValue("6".hashCode(), new Symbol("6"));
+		contexts.getFirst().insertValue("7".hashCode(), new Symbol("7"));
+		contexts.getFirst().insertValue("8".hashCode(), new Symbol("8"));
+		contexts.getFirst().insertValue("9".hashCode(), new Symbol("9"));
 	}
 	
 	/**
@@ -138,9 +151,7 @@ public class Contexts {
 		ListIterator<Context> listIterator = contexts.listIterator();
         while (listIterator.hasNext()) {
             scope.putAll(listIterator.next().getScopeFromContext());
-            listIterator.remove();
         }
-        System.out.println();
 		return scope;
 	}
 	
@@ -154,7 +165,6 @@ public class Contexts {
 						 +" ---> "
 						 +pair.getValue().toString());
 			 }
-			 it.remove();
 		}
 	}
 }
