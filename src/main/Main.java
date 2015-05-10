@@ -28,6 +28,7 @@ public class Main {
 				Symbol de = new Symbol("DE");
 				Symbol imp = new Symbol("IMPLODE");
 				Symbol prt = new Symbol("PRINT");
+				Symbol load = new Symbol("LOAD");
 				Contexts.addContext();
 				Contexts.addSymbolToFirstContext(car, new Car());
 				Contexts.addSymbolToFirstContext(cdr, new Cdr());
@@ -40,6 +41,7 @@ public class Main {
 				Contexts.addSymbolToFirstContext(prt, new Print());
 				Contexts.addSymbolToFirstContext(quote, new Quote());
 				Contexts.addSymbolToFirstContext(quit, new Quit());
+				Contexts.addSymbolToFirstContext(load, new Load());
 				
 				GrammaireLISP parser = new GrammaireLISP(System.in);
 				_Sexpr s2 = parser.importe("boot");
