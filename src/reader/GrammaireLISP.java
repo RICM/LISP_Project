@@ -47,9 +47,9 @@ public class GrammaireLISP implements GrammaireLISPConstants {
         while(!eof){
                 try
                 {
-                        expr = SEXPR();
+                        expr = SEXPR().eval();
                         if(print)
-                                System.out.println(expr.eval());
+                                System.out.println(expr);
                 }catch(ParseException e)
                 {
                   if(!e.getMessage().contains("<EOF>"))

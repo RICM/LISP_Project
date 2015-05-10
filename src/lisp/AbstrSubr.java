@@ -27,6 +27,9 @@ public abstract class AbstrSubr extends AbstrPrimitive{
 			i++;
 			tmp = tmp.getCdr();
 		}
+		if(i != fun.getNumberOfParam())
+			if((fun.getNumberOfParam() == Integer.MAX_VALUE && i == 0) || fun.getNumberOfParam() != Integer.MAX_VALUE) 
+				throw new LispException("Invalid number of parameters");
 		
 		tmp = paramTmp;
 		//System.out.println(fun.getClass().getName()+" : parameters origin list\t\t"+tmp);
@@ -67,8 +70,6 @@ public abstract class AbstrSubr extends AbstrPrimitive{
 		}
 		
 		//System.out.println(fun.getClass().getName()+" : parameters list\t\t"+evalSexpr);
-		
-		if(i != fun.getNumberOfParam() && fun.getNumberOfParam() != Integer.MAX_VALUE) throw new LispException("Invalid number of parameters");
 		return fun.apply(evalSexpr);
 	}
 }

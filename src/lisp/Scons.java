@@ -82,6 +82,8 @@ public class Scons implements _Slist{
 			}
 			else if(evaluation.eval() instanceof AbstrFsubr)
 				return ((AbstrFsubr)evaluation.eval()).exec((_Function)evaluation.eval(), this.getCdr());
+			else if(evaluation.eval() instanceof Scons)
+				return (new Scons(evaluation.eval(), getCdr(), true)).eval();
 			else
 				return new Scons(evaluation.eval(), getCdr().eval(), false);
 		}else{
