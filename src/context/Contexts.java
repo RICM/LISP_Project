@@ -165,7 +165,7 @@ public class Contexts {
 			 Map.Entry<Symbol,_Sexpr> pair = (Entry<Symbol, _Sexpr>)it.next();
 			 if (pair.getValue() != null && pair.getKey() != null && pair.getValue() != Nil.nil){
 				 System.out.println(pair.getKey().toString()
-						 +" ---> "
+						 +"\t\t--->\t"
 						 +pair.getValue().toString());
 			 }
 		}
