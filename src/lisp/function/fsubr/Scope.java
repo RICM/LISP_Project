@@ -2,8 +2,6 @@ package lisp.function.fsubr;
 
 import lisp.AbstrFsubr;
 import context.Contexts;
-import lisp.Scons;
-import lisp.Symbol;
 import lisp._Sexpr;
 import exception.LispException;
 
@@ -37,8 +35,12 @@ public class Scope extends AbstrFsubr {
 	 */
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
-		context.Contexts.printScope();
+		Contexts.printScope();
 		return null;
+	}
+	
+	public void print () {
+		Contexts.printScope();
 	}
 	
 }

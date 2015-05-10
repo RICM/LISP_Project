@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import lisp.Scons;
 import lisp.Symbol;
 import lisp._Sexpr;
+import lisp.function.fsubr.Scope;
 import reader.GrammaireLISP;
 import reader.ParseException;
 import context.Contexts;
@@ -29,7 +30,11 @@ public class Main {
 					
 					//System.out.println(s);
 					try{
-						System.out.println(s.eval());
+						if (((Symbol)((Scons)s).getCar()).name.equals("SCOPE")){
+							((Scope)((Symbol)((Scons)s).getCar()).eval()).print();
+						}else{
+							System.out.println(s.eval());
+						}
 					}catch (LispException e){
 						System.out.println("--> "+e.getMessage());
 					}
@@ -47,8 +52,9 @@ public class Main {
 			} catch (ParseException e){
 				System.out.println("Error when parsed file : ");
 				System.out.println(e.getMessage());
-			} finally {
+			} catch (Exception e) {
 				System.out.println("Unknow Error Occured");
+				System.out.println(e.getMessage());
 			}
 	}
 }
