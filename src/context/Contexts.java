@@ -7,11 +7,13 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import lisp.Nil;
 import lisp.Symbol;
 import lisp._Sexpr;
 import lisp.function.fsubr.Cond;
 import lisp.function.fsubr.Define;
 import lisp.function.fsubr.Fdefine;
+import lisp.function.fsubr.Scope;
 import lisp.function.subr.Atom;
 import lisp.function.subr.Car;
 import lisp.function.subr.Cdr;
@@ -66,6 +68,7 @@ public class Contexts {
 		contexts.getFirst().insertValue("IMPLODE".hashCode(), new Implode());
 		contexts.getFirst().insertValue("PRINT".hashCode(), new Print());
 		contexts.getFirst().insertValue("EPROGN".hashCode(), new Eprogn());
+		contexts.getFirst().insertValue("SCOPE".hashCode(), new Scope());
 		contexts.getFirst().insertValue("SET".hashCode(), new Set());
 		contexts.getFirst().insertValue("LOAD".hashCode(), new Load());
 		contexts.getFirst().insertValue("QUIT".hashCode(), new Quit());
@@ -160,7 +163,7 @@ public class Contexts {
 		Iterator<Entry<Symbol, _Sexpr>> it = scope.entrySet().iterator();
 		while (it.hasNext()){
 			 Map.Entry<Symbol,_Sexpr> pair = (Entry<Symbol, _Sexpr>)it.next();
-			 if (pair.getValue() != null && pair.getKey() != null){
+			 if (pair.getValue() != null && pair.getKey() != null && pair.getValue() != Nil.nil){
 				 System.out.println(pair.getKey().toString()
 						 +" ---> "
 						 +pair.getValue().toString());
