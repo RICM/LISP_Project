@@ -11,6 +11,8 @@ public class Scons implements _Slist{
 	public boolean isRoot = true;
 	public boolean isPaired = false;
 	
+	public boolean isFunction = false;
+	
 	/**
 	 * @return car The _Sexpr car
 	 */
@@ -33,8 +35,13 @@ public class Scons implements _Slist{
 		
 		if(this.car instanceof Scons)
 			((Scons)this.car).isRoot = false;
-		if(this.cdr instanceof Scons)
+		if(this.cdr instanceof Scons){
+			((Scons)this.cdr).isFunction = false;
 			((Scons)this.cdr).isRoot = false;
+		}
+		
+		if(this.car == Nil.nil)
+			this.isFunction = true;
 		
 		this.isPaired = isPaired;
 	}
@@ -60,8 +67,10 @@ public class Scons implements _Slist{
 		_Sexpr evaluation = car;
 		
 		if (evaluation == Nil.nil){
-			//throw new LispException("Dont expect nil as functor of Scons");
-			return Nil.nil;
+			if(this.isFunction)
+				throw new LispException("Dont expect nil as functor of Scons");
+			else
+				return Nil.nil;
 		}else if(evaluation instanceof Scons){
 			if(evaluation.getCar() instanceof Symbol){
 				if(((Symbol) evaluation.getCar()).name.equals("LAMBDA"))
