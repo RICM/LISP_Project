@@ -33,11 +33,9 @@ public class Context {
 	 * @param expression The new expression to reference
 	 */
 	public void setValue(Symbol symbol, _Sexpr expression){
-		if(this.context.containsKey(symbol.hashCode()))
-			this.context.replace(symbol.hashCode(), expression);
-		else
-			this.insertValue(symbol, expression);
+		this.context.put(symbol.hashCode(), expression);
 	}
+	
 	/**
 	 * Function used to insert an association of Symbol and _Sexpr
 	 * if Symbol is already used in association replaces old _Sexpr by new _Sexpr

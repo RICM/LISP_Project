@@ -1,15 +1,18 @@
 package lisp.function.fsubr;
 
 import lisp.AbstrFsubr;
+import lisp.Scons;
+import lisp.Symbol;
 import lisp._Sexpr;
+import context.Contexts;
 import exception.LispException;
 
-public class Quote extends AbstrFsubr{
+public class Fdefine extends AbstrFsubr{
 
 	/**
 	 * Private Attributes
 	 */
-	private int numberOfParam = 1;
+	private int numberOfParam = 3;
 
 	/**
 	 * Function used to evaluate a Car
@@ -37,6 +40,14 @@ public class Quote extends AbstrFsubr{
 	 */
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
-		return param.getCar();
+		if(!(param.getCar() instanceof Symbol))
+			throw new LispException("Error : Unvalid name for function");
+		else{
+			_Sexpr expression = new Scons(new Symbol("FLAMBDA"), param.getCdr(), false); 
+			((Scons)expression).isRoot = true;
+			Contexts.addSymbolToFirstContext((Symbol)param.getCar(), expression);
+				
+			return expression;
+		}
 	}
 }

@@ -1,8 +1,6 @@
 package lisp.function.subr;
 
 import lisp.AbstrSubr;
-import lisp.Nil;
-import lisp.Scons;
 import lisp.Symbol;
 import lisp._Sexpr;
 import exception.LispException;

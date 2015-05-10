@@ -1,12 +1,10 @@
 package lisp.function.fsubr;
 
-import context.Contexts;
 import lisp.AbstrFsubr;
-import lisp.Nil;
 import lisp.Scons;
 import lisp.Symbol;
 import lisp._Sexpr;
-import lisp.function.subr.Set;
+import context.Contexts;
 import exception.LispException;
 
 public class Define extends AbstrFsubr{
@@ -45,8 +43,11 @@ public class Define extends AbstrFsubr{
 		if(!(param.getCar() instanceof Symbol))
 			throw new LispException("Error : Unvalid name for function");
 		else{
-			Contexts.changeSexprInContexts((Symbol)param.getCar(), param.getCdr());
-			return param.getCar();
+			_Sexpr expression = new Scons(new Symbol("LAMBDA"), param.getCdr(), false); 
+			((Scons)expression).isRoot = true;
+			Contexts.addSymbolToFirstContext((Symbol)param.getCar(), expression);
+				
+			return expression;
 		}
 	}
 }
