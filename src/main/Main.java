@@ -30,7 +30,8 @@ public class Main {
 					
 					//System.out.println(s);
 					try{
-						if (((Symbol)((Scons)s).getCar()).name.equals("SCOPE")){
+						if (s instanceof Scons && ((Scons)s).getCar() instanceof Symbol 
+								&& ((Symbol)((Scons)s).getCar()).name.equals("SCOPE")){
 							((Scope)((Symbol)((Scons)s).getCar()).eval()).print();
 						}else{
 							System.out.println(s.eval());
