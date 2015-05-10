@@ -19,6 +19,7 @@ public class Main {
 				Contexts.setMinimalContexts();
 				GrammaireLISP parser = new GrammaireLISP(System.in);
 				parser.importe("boot", false);
+				Contexts.printScope();
 				
 				_Sexpr s;
 				int i=0;
@@ -46,6 +47,8 @@ public class Main {
 			} catch (ParseException e){
 				System.out.println("Error when parsed file : ");
 				System.out.println(e.getMessage());
+			} finally {
+				System.out.println("Unknow Error Occured");
 			}
 	}
 }
