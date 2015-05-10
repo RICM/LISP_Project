@@ -7,7 +7,7 @@ import lisp._Sexpr;
 import context.Contexts;
 import exception.LispException;
 
-public class Define extends AbstrFsubr{
+public class Fdefine extends AbstrFsubr{
 
 	/**
 	 * Private Attributes
@@ -43,7 +43,7 @@ public class Define extends AbstrFsubr{
 		if(!(param.getCar() instanceof Symbol))
 			throw new LispException("Error : Unvalid name for function");
 		else{
-			_Sexpr expression = new Scons(new Symbol("LAMBDA"), param.getCdr(), false); 
+			_Sexpr expression = new Scons(new Symbol("FLAMBDA"), param.getCdr(), false); 
 			((Scons)expression).isRoot = true;
 			Contexts.addSymbolToFirstContext((Symbol)param.getCar(), expression);
 				
