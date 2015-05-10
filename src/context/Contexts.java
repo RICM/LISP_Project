@@ -7,7 +7,6 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import lisp.Nil;
 import lisp.Symbol;
 import lisp._Sexpr;
 import lisp.function.fsubr.Cond;
@@ -59,7 +58,7 @@ public class Contexts {
 		addContext();
 		
 		// SUBR
-		contexts.getFirst().insertValue("CAR".hashCode(), new Car());
+		contexts.getFirst().insertValue(new Symbol("CAR"), new Car());
 		contexts.getFirst().insertValue("CDR".hashCode(), new Cdr());
 		contexts.getFirst().insertValue("CONS".hashCode(), new Cons());
 		contexts.getFirst().insertValue("EQ".hashCode(), new Eq());
@@ -161,13 +160,20 @@ public class Contexts {
 	public static void printScope(){
 		HashMap<Symbol, _Sexpr> scope = getScope();
 		Iterator<Entry<Symbol, _Sexpr>> it = scope.entrySet().iterator();
+		it.next();
 		while (it.hasNext()){
-			 Map.Entry<Symbol,_Sexpr> pair = (Entry<Symbol, _Sexpr>)it.next();
-			 if (pair.getValue() != null && pair.getKey() != null && pair.getValue() != Nil.nil){
-				 System.out.println(pair.getKey().toString()
+			Map.Entry<Symbol,_Sexpr> pair = (Entry<Symbol, _Sexpr>)it.next();
+			System.out.println(pair.getKey().toString()
 						 +"\t\t--->\t"
 						 +pair.getValue().toString());
-			 }
 		}
+	}
+	
+	/**
+	 * Function used to get contexts size
+	 * @return int The size of contexts
+	 */
+	public static int getNumberOfContexts(){
+		return contexts.size();
 	}
 }

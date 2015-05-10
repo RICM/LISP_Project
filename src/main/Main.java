@@ -17,7 +17,9 @@ public class Main {
 		
 		
 			try {
+				System.out.println("Size of contexts : "+Contexts.getNumberOfContexts());
 				Contexts.setMinimalContexts();
+				System.out.println("Size of contexts : "+Contexts.getNumberOfContexts());
 				GrammaireLISP parser = new GrammaireLISP(System.in);
 				parser.importe("boot", false);
 				//Contexts.printScope();
