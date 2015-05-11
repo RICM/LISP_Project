@@ -14,6 +14,7 @@ import lisp.function.fsubr.Cond;
 import lisp.function.fsubr.Define;
 import lisp.function.fsubr.Fdefine;
 import lisp.function.fsubr.Scope;
+import lisp.function.subr.Apply;
 import lisp.function.subr.Atom;
 import lisp.function.subr.Car;
 import lisp.function.subr.Cdr;
@@ -68,6 +69,7 @@ public class Contexts {
 		contexts.getFirst().insertValue("CONS".hashCode(), new Cons());
 		contexts.getFirst().insertValue("EQ".hashCode(), new Eq());
 		contexts.getFirst().insertValue("ATOM".hashCode(), new Atom());
+		contexts.getFirst().insertValue("APPLY".hashCode(), new Apply());
 		contexts.getFirst().insertValue("EVAL".hashCode(), new Eval());
 		
 		contexts.getFirst().insertValue("EXPLODE".hashCode(), new Explode());
