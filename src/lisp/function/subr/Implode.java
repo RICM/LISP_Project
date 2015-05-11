@@ -18,8 +18,7 @@ public class Implode extends AbstrSubr{
 	 */
 	@Override
 	public _Sexpr eval() throws LispException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Symbol("IMPLODE");
 	}
 
 	/**
