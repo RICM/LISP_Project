@@ -21,6 +21,7 @@ import lisp.function.subr.Cons;
 import lisp.function.subr.Eprogn;
 import lisp.function.subr.Eq;
 import lisp.function.subr.Eval;
+import lisp.function.subr.Explode;
 import lisp.function.subr.Implode;
 import lisp.function.subr.Load;
 import lisp.function.subr.Print;
@@ -61,7 +62,7 @@ public class Contexts {
 		addContext();
 		
 		// SUBR
-		contexts.getFirst().insertValue("TOPLEVEL".hashCode(), new Toplevel());
+		
 		contexts.getFirst().insertValue("CAR".hashCode(), new Car());
 		contexts.getFirst().insertValue("CDR".hashCode(), new Cdr());
 		contexts.getFirst().insertValue("CONS".hashCode(), new Cons());
@@ -69,13 +70,15 @@ public class Contexts {
 		contexts.getFirst().insertValue("ATOM".hashCode(), new Atom());
 		contexts.getFirst().insertValue("EVAL".hashCode(), new Eval());
 		
+		contexts.getFirst().insertValue("EXPLODE".hashCode(), new Explode());
 		contexts.getFirst().insertValue("IMPLODE".hashCode(), new Implode());
 		contexts.getFirst().insertValue("PRINT".hashCode(), new Print());
 		contexts.getFirst().insertValue("EPROGN".hashCode(), new Eprogn());
-		contexts.getFirst().insertValue("SCOPE".hashCode(), new Scope());
 		contexts.getFirst().insertValue("SET".hashCode(), new Set());
 		contexts.getFirst().insertValue("LOAD".hashCode(), new Load());
 		contexts.getFirst().insertValue("QUIT".hashCode(), new Quit());
+		contexts.getFirst().insertValue("TOPLEVEL".hashCode(), new Toplevel());
+		contexts.getFirst().insertValue("SCOPE".hashCode(), new Scope());
 		
 		// FSUBR
 		contexts.getFirst().insertValue("DE".hashCode(), new Define());
