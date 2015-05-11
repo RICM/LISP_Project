@@ -29,6 +29,8 @@ public class Symbol extends AbstrAtom {
 	@Override
 	public _Sexpr eval() throws LispException {
 		_Sexpr out = Contexts.getSexprFromContexts(this);
+		if(out instanceof Scons)
+			((Scons)out).isRoot = true;
 		if(out == null)
 			throw new LispException("Variable "+this.name+" has no value");
 		return out;

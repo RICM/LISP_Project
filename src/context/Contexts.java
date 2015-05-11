@@ -28,6 +28,7 @@ import lisp.function.subr.Print;
 import lisp.function.subr.Quit;
 import lisp.function.subr.Set;
 import lisp.function.subr.Toplevel;
+import lisp.function.subr.Typefn;
 
 public class Contexts {
 	
@@ -77,6 +78,7 @@ public class Contexts {
 		contexts.getFirst().insertValue("SET".hashCode(), new Set());
 		contexts.getFirst().insertValue("LOAD".hashCode(), new Load());
 		contexts.getFirst().insertValue("QUIT".hashCode(), new Quit());
+		contexts.getFirst().insertValue("TYPEFN".hashCode(), new Typefn());
 		contexts.getFirst().insertValue("TOPLEVEL".hashCode(), new Toplevel());
 		contexts.getFirst().insertValue("SCOPE".hashCode(), new Scope());
 		
