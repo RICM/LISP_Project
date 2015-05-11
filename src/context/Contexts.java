@@ -20,6 +20,7 @@ import lisp.function.subr.Atom;
 import lisp.function.subr.Car;
 import lisp.function.subr.Cdr;
 import lisp.function.subr.Cons;
+import lisp.function.subr.End;
 import lisp.function.subr.Eprogn;
 import lisp.function.subr.Eq;
 import lisp.function.subr.Eval;
@@ -84,6 +85,7 @@ public class Contexts {
 		contexts.getFirst().insertValue(new Symbol("QUIT"), new Quit());
         contexts.getFirst().insertValue(new Symbol("TYPEFIN"), new Typefn());
         contexts.getFirst().insertValue(new Symbol("TOPLEVEL"), new Toplevel());
+        contexts.getFirst().insertValue(new Symbol("END"), new End());
 		
 		// FSUBR
 		contexts.getFirst().insertValue(new Symbol("DE"), new Define());

@@ -16,7 +16,7 @@ public class Toplevel extends AbstrSubr {
 	 */
 	private int numberOfParam = 0;
 	
-	private int lvmNumb = 0;
+	public int lvmNumb = 0;
 
 	/**
 	 * Function used to get the number of parameters
@@ -52,6 +52,8 @@ public class Toplevel extends AbstrSubr {
 			_Sexpr s;
 			int i=0;
 			do{
+				for(int j=0; j<lvmNumb-1; j++)
+					System.out.print("\t");
 				System.out.print("LVM"+lvmNumb+" : ["+i+"]\t");
 				s = parser.read();
 				
@@ -61,6 +63,8 @@ public class Toplevel extends AbstrSubr {
 							&& ((Symbol)((Scons)s).getCar()).name.equals("SCOPE")){
 						((Scope)((Symbol)((Scons)s).getCar()).eval()).print();
 					}else{
+						for(int j=0; j<lvmNumb-1; j++)
+							System.out.print("\t");
 						System.out.println(s.eval());
 					}
 				}catch (LispException e){
@@ -82,7 +86,11 @@ public class Toplevel extends AbstrSubr {
 			System.out.println("Unknow Error Occured");
 			System.out.println(e.getMessage());
 		}
-		return new Symbol("T");
+		String str = "";
+		for(int j=0; j<lvmNumb; j++)
+			str += "\t";
+		str += "LVM level "+(lvmNumb+1)+" terminated";
+		return new Symbol(str);
 	}
 
 	/**
