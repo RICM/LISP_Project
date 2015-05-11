@@ -53,12 +53,9 @@ public class Print extends AbstrSubr{
 				out = tmp.getCar();
 			tmp = tmp.getCdr();
 		}
-		if(out instanceof Scons){
+		if(out instanceof Scons)
 			((Scons)out).isRoot = true;
-			System.out.println(param.toString().substring(1, param.toString().length()-1));
-		}
-		else
-			System.out.println(out);
+		System.out.println(param.toString().substring(1, param.toString().length()-1));
 		return out;
 	}
 }

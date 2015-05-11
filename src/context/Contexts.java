@@ -83,7 +83,7 @@ public class Contexts {
 		contexts.getFirst().insertValue(new Symbol("SET"), new Set());
 		contexts.getFirst().insertValue(new Symbol("LOAD"), new Load());
 		contexts.getFirst().insertValue(new Symbol("QUIT"), new Quit());
-        contexts.getFirst().insertValue(new Symbol("TYPEFIN"), new Typefn());
+        contexts.getFirst().insertValue(new Symbol("TYPEFN"), new Typefn());
         contexts.getFirst().insertValue(new Symbol("TOPLEVEL"), new Toplevel());
         contexts.getFirst().insertValue(new Symbol("END"), new End());
 		
