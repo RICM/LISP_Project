@@ -65,43 +65,43 @@ public class Contexts {
 		addContext();
 		
 		// SUBR
+
+		contexts.getFirst().insertValue(new Symbol("CAR"), new Car());
+		contexts.getFirst().insertValue(new Symbol("CDR"), new Cdr());
+		contexts.getFirst().insertValue(new Symbol("CONS"), new Cons());
+		contexts.getFirst().insertValue(new Symbol("EQ"), new Eq());
+		contexts.getFirst().insertValue(new Symbol("ATOM"), new Atom());
+        contexts.getFirst().insertValue(new Symbol("APPLY"), new Apply());
+        contexts.getFirst().insertValue(new Symbol("EVAL"), new Eval());
 		
-		contexts.getFirst().insertValue("CAR".hashCode(), new Car());
-		contexts.getFirst().insertValue("CDR".hashCode(), new Cdr());
-		contexts.getFirst().insertValue("CONS".hashCode(), new Cons());
-		contexts.getFirst().insertValue("EQ".hashCode(), new Eq());
-		contexts.getFirst().insertValue("ATOM".hashCode(), new Atom());
-		contexts.getFirst().insertValue("APPLY".hashCode(), new Apply());
-		contexts.getFirst().insertValue("EVAL".hashCode(), new Eval());
-		
-		contexts.getFirst().insertValue("EXPLODE".hashCode(), new Explode());
-		contexts.getFirst().insertValue("IMPLODE".hashCode(), new Implode());
-		contexts.getFirst().insertValue("PRINT".hashCode(), new Print());
-		contexts.getFirst().insertValue("EPROGN".hashCode(), new Eprogn());
-		contexts.getFirst().insertValue("SET".hashCode(), new Set());
-		contexts.getFirst().insertValue("LOAD".hashCode(), new Load());
-		contexts.getFirst().insertValue("QUIT".hashCode(), new Quit());
-		contexts.getFirst().insertValue("TYPEFN".hashCode(), new Typefn());
-		contexts.getFirst().insertValue("TOPLEVEL".hashCode(), new Toplevel());
-		contexts.getFirst().insertValue("SCOPE".hashCode(), new Scope());
+        contexts.getFirst().insertValue(new Symbol("EXPLODE"), new Explode());
+		contexts.getFirst().insertValue(new Symbol("IMPLODE"), new Implode());
+		contexts.getFirst().insertValue(new Symbol("PRINT"), new Print());
+		contexts.getFirst().insertValue(new Symbol("EPROGN"), new Eprogn());
+		contexts.getFirst().insertValue(new Symbol("SCOPE"), new Scope());
+		contexts.getFirst().insertValue(new Symbol("SET"), new Set());
+		contexts.getFirst().insertValue(new Symbol("LOAD"), new Load());
+		contexts.getFirst().insertValue(new Symbol("QUIT"), new Quit());
+        contexts.getFirst().insertValue(new Symbol("TYPEFIN"), new Typefn());
+        contexts.getFirst().insertValue(new Symbol("TOPLEVEL"), new Toplevel());
 		
 		// FSUBR
-		contexts.getFirst().insertValue("DE".hashCode(), new Define());
-		contexts.getFirst().insertValue("DF".hashCode(), new Fdefine());
-		contexts.getFirst().insertValue("COND".hashCode(), new Cond());
+		contexts.getFirst().insertValue(new Symbol("DE"), new Define());
+		contexts.getFirst().insertValue(new Symbol("DF"), new Fdefine());
+		contexts.getFirst().insertValue(new Symbol("COND"), new Cond());
 		
-		contexts.getFirst().insertValue("T".hashCode(), new Symbol("T"));
+		contexts.getFirst().insertValue(new Symbol("T"), new Symbol("T"));
 		
-		contexts.getFirst().insertValue("0".hashCode(), new Symbol("0"));
-		contexts.getFirst().insertValue("1".hashCode(), new Symbol("1"));
-		contexts.getFirst().insertValue("2".hashCode(), new Symbol("2"));
-		contexts.getFirst().insertValue("3".hashCode(), new Symbol("3"));
-		contexts.getFirst().insertValue("4".hashCode(), new Symbol("4"));
-		contexts.getFirst().insertValue("5".hashCode(), new Symbol("5"));
-		contexts.getFirst().insertValue("6".hashCode(), new Symbol("6"));
-		contexts.getFirst().insertValue("7".hashCode(), new Symbol("7"));
-		contexts.getFirst().insertValue("8".hashCode(), new Symbol("8"));
-		contexts.getFirst().insertValue("9".hashCode(), new Symbol("9"));
+		contexts.getFirst().insertValue(new Symbol("0"), new Symbol("0"));
+		contexts.getFirst().insertValue(new Symbol("1"), new Symbol("1"));
+		contexts.getFirst().insertValue(new Symbol("2"), new Symbol("2"));
+		contexts.getFirst().insertValue(new Symbol("3"), new Symbol("3"));
+		contexts.getFirst().insertValue(new Symbol("4"), new Symbol("4"));
+		contexts.getFirst().insertValue(new Symbol("5"), new Symbol("5"));
+		contexts.getFirst().insertValue(new Symbol("6"), new Symbol("6"));
+		contexts.getFirst().insertValue(new Symbol("7"), new Symbol("7"));
+		contexts.getFirst().insertValue(new Symbol("8"), new Symbol("8"));
+		contexts.getFirst().insertValue(new Symbol("9"), new Symbol("9"));
 	}
 	
 	/**
@@ -173,15 +173,25 @@ public class Contexts {
 	public static void printScope(){
 		HashMap<Symbol, _Sexpr> scope = getScope();
 		Iterator<Entry<Symbol, _Sexpr>> it = scope.entrySet().iterator();
+		it.next();
 		while (it.hasNext()){
 			 Map.Entry<Symbol,_Sexpr> pair = (Entry<Symbol, _Sexpr>)it.next();
 			 if (pair.getValue() != null && pair.getKey() != null && pair.getValue() != Nil.nil){
 				 if(pair.getValue() instanceof Scons)
 					 ((Scons)pair.getValue()).isRoot = true;
-				 System.out.println(pair.getKey().toString()
+				 /*System.out.println(pair.getKey().toString()
 						 +"\t\t--->\t"
-						 +pair.getValue().toString());
+						 +pair.getValue().toString());*/
+				 System.out.println(String.format("%-20s--> %s" , pair.getKey().toString(), pair.getValue().toString() ));
 			 }
 		}
+	}
+	
+	/**
+	 * Function used to get contexts size
+	 * @return int The size of contexts
+	 */
+	public static int getNumberOfContexts(){
+		return contexts.size();
 	}
 }

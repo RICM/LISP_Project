@@ -14,7 +14,6 @@ public class Main {
 		Contexts.setMinimalContexts();
 		GrammaireLISP parser = new GrammaireLISP(System.in);
 
-		
 		try {
 			parser.importe("boot", false);
 			parser.read("(TOPLEVEL)").eval();
@@ -26,7 +25,6 @@ public class Main {
 		}catch (FileNotFoundException e){
 			System.out.println("Failed to open file : ");
 			System.out.println(e.getMessage());
-		} 
-			
+		}
 	}
 }
