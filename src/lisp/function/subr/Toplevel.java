@@ -15,6 +15,8 @@ public class Toplevel extends AbstrSubr {
 	 * Private Attributes
 	 */
 	private int numberOfParam = 0;
+	
+	private int lvmNumb = 0;
 
 	/**
 	 * Function used to get the number of parameters
@@ -43,14 +45,14 @@ public class Toplevel extends AbstrSubr {
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException {
 		
-		
+		lvmNumb++;
 		try {
 			GrammaireLISP parser = new GrammaireLISP(System.in);
 			
 			_Sexpr s;
 			int i=0;
 			do{
-				System.out.print("["+i+"]\t");
+				System.out.print("LVM"+lvmNumb+" : ["+i+"]\t");
 				s = parser.read();
 				
 				//System.out.println(s);
@@ -69,6 +71,7 @@ public class Toplevel extends AbstrSubr {
 			}while(!(s instanceof Scons 
 					&& ((Scons)s).getCar() instanceof Symbol 
 					&& ((Symbol)((Scons)s).getCar()).name.equals("QUIT")));
+			lvmNumb--;
 			
 		} catch (LispException e) {
 			System.out.println(e.getMessage());
