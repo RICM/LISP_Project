@@ -2,6 +2,7 @@ package lisp.function.subr;
 
 import lisp.AbstrSubr;
 import lisp.Nil;
+import lisp.Symbol;
 import lisp._Sexpr;
 import exception.LispException;
 
@@ -18,8 +19,7 @@ public class Eprogn extends AbstrSubr{
 	 */
 	@Override
 	public _Sexpr eval() throws LispException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Symbol("EPROGN");
 	}
 
 	/**
