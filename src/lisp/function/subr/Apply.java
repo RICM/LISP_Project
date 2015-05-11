@@ -1,9 +1,6 @@
 package lisp.function.subr;
 
 import lisp.AbstrSubr;
-import lisp.Nil;
-import lisp.Scons;
-import lisp.Symbol;
 import lisp._Sexpr;
 import exception.LispException;
 
@@ -40,8 +37,7 @@ public class Apply extends AbstrSubr{
 	 */
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
-			
-				return param.eval();
+				return param.getCar() ;
 	}
 		
 }
