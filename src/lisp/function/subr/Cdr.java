@@ -41,12 +41,9 @@ public class Cdr extends AbstrSubr{
 			throw new LispException ("Error : trying to apply CDR to a Symbol");
 		}
 		else{
-			Scons out;
-			if(param instanceof Scons && param.getCdr() == Nil.nil && !(param.getCar() instanceof Symbol))
-				out = new Scons(param.getCar().getCdr(), Nil.nil, false);
-			else
-				out = new Scons(param.getCdr(), Nil.nil, false);
-			out.isRoot = false;
+			_Sexpr out = param.getCdr();
+			if(out instanceof Scons)
+				((Scons)out).isRoot = true;
 			return out;
 		}
 	}
