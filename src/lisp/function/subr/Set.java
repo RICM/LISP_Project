@@ -23,6 +23,14 @@ public class Set extends AbstrSubr{
 		return new Symbol("SET");
 	}
 
+	
+	/**
+	 * @return the function name
+	 **/
+	public String toString (){
+		return "SET";
+	}
+	
 	/**
 	 * Function used to get the number of parameters
 	 * @return int The number of parameters of the Car function

@@ -46,5 +46,12 @@ public class Cdr extends AbstrSubr{
 			return out;
 		}
 	}
+	
+	/**
+	 * @return the function name
+	 **/
+	public String toString (){
+		return "CDR";
+	}
 		
 }

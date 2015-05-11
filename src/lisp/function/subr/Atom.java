@@ -5,6 +5,9 @@ import lisp.*;
 
 public class Atom extends AbstrSubr {
 
+	/**
+	 * Private Attributes
+	 */
 	private int numberOfParam = 1;
 	
 	@Override
@@ -25,6 +28,13 @@ public class Atom extends AbstrSubr {
 	@Override
 	public _Sexpr eval() throws LispException {
 		return new Symbol("ATOM");
+	}
+	
+	/**
+	 * @return the function name
+	 **/
+	public String toString (){
+		return "ATOM";
 	}
 
 }

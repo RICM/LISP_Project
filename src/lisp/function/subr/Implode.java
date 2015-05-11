@@ -20,6 +20,13 @@ public class Implode extends AbstrSubr{
 	public _Sexpr eval() throws LispException {
 		return new Symbol("IMPLODE");
 	}
+	
+	/**
+	 * @return the function name
+	 **/
+	public String toString (){
+		return "IMPLODE";
+	}
 
 	/**
 	 * Function used to get the number of parameters

@@ -22,7 +22,14 @@ public class Print extends AbstrSubr{
 	public _Sexpr eval() throws LispException {
 		return new Symbol("PRINT");
 	}
-
+	
+	/**
+	 * @return the function name
+	 **/
+	public String toString (){
+		return "PRINT";
+	}
+	
 	/**
 	 * Function used to get the number of parameters
 	 * @return int The number of parameters of the Car function

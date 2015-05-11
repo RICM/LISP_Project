@@ -39,4 +39,11 @@ public class Cons extends AbstrSubr{
 			return new Scons(param.getCar(), param.getCdr().getCar(), false);
 		return new Scons(param.getCar(), param.getCdr(), false);
 	}
+	
+	/**
+	 * @return the function name
+	 **/
+	public String toString (){
+		return "CONS";
+	}
 }

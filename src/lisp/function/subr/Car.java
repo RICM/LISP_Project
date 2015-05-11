@@ -1,7 +1,6 @@
 package lisp.function.subr;
 
 import exception.LispException;
-
 import lisp.*;
 
 public class Car extends AbstrSubr{
@@ -50,5 +49,12 @@ public class Car extends AbstrSubr{
 				return param.getCar();
 			}
 		}
+	}
+	
+	/**
+	 * @return the function name
+	 **/
+	public String toString (){
+		return "CAR";
 	}
 }

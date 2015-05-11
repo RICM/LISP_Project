@@ -21,6 +21,13 @@ public class Eprogn extends AbstrSubr{
 	public _Sexpr eval() throws LispException {
 		return new Symbol("EPROGN");
 	}
+	
+	/**
+	 * @return the function name
+	 **/
+	public String toString (){
+		return "EPROGN";
+	}
 
 	/**
 	 * Function used to get the number of parameters

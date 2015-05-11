@@ -32,5 +32,12 @@ public class Eq extends AbstrSubr {
 	public _Sexpr eval() throws LispException {
 		return new Symbol("EQ");
 	}
+	
+	/**
+	 * @return the function name
+	 **/
+	public String toString (){
+		return "EQ";
+	}
 
 }
