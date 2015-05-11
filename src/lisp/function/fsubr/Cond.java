@@ -20,8 +20,7 @@ public class Cond extends AbstrFsubr{
 	 */
 	@Override
 	public _Sexpr eval() throws LispException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Symbol("COND");
 	}
 
 	/**
@@ -53,5 +52,12 @@ public class Cond extends AbstrFsubr{
 			tmp = tmp.getCdr();
 		}
 		return Nil.nil;
+	}
+	
+	/**
+	 * @return String The function name
+	 */
+	public String toString(){
+		return "COND";
 	}
 }

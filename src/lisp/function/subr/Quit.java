@@ -17,8 +17,7 @@ public class Quit extends AbstrSubr{
 	 */
 	@Override
 	public _Sexpr eval() throws LispException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Symbol("QUIT");
 	}
 
 	/**
@@ -38,5 +37,12 @@ public class Quit extends AbstrSubr{
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
 		return new Symbol("Au revoir ! :D ");
+	}
+	
+	/**
+	 * @return String The function name
+	 */
+	public String toString(){
+		return "QUIT";
 	}
 }

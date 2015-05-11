@@ -19,8 +19,7 @@ public class Typefn extends AbstrSubr{
 	 */
 	@Override
 	public _Sexpr eval() throws LispException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Symbol("TYPEFN");
 	}
 
 	/**
@@ -60,5 +59,12 @@ public class Typefn extends AbstrSubr{
 		}
 		else
 			throw new LispException("Nil is not valable for this function.");
+	}
+	
+	/**
+	 * @return String The function name
+	 */
+	public String toString(){
+		return "TYPEFN";
 	}
 }

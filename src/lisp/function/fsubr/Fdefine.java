@@ -20,8 +20,7 @@ public class Fdefine extends AbstrFsubr{
 	 */
 	@Override
 	public _Sexpr eval() throws LispException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Symbol("DF");
 	}
 
 	/**
@@ -49,5 +48,12 @@ public class Fdefine extends AbstrFsubr{
 				
 			return expression;
 		}
+	}
+	
+	/**
+	 * @return String The function name
+	 */
+	public String toString(){
+		return "DF";
 	}
 }

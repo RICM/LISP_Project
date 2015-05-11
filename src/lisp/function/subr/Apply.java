@@ -1,6 +1,7 @@
 package lisp.function.subr;
 
 import lisp.AbstrSubr;
+import lisp.Symbol;
 import lisp._Sexpr;
 import exception.LispException;
 
@@ -17,8 +18,7 @@ public class Apply extends AbstrSubr{
 	 */
 	@Override
 	public _Sexpr eval() throws LispException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Symbol("APPLY");
 	}
 
 	/**
@@ -38,6 +38,13 @@ public class Apply extends AbstrSubr{
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
 				return param.getCar() ;
+	}
+	
+	/**
+	 * @return String The function name
+	 */
+	public String toString(){
+		return "APPLY";
 	}
 		
 }

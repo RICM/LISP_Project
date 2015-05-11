@@ -43,9 +43,13 @@ public class Load extends AbstrSubr {
 
 	@Override
 	public _Sexpr eval() throws LispException {
-		
-		// TODO Auto-generated method stub
-		return null;
+		return new Symbol("LOAD");
 	}
-
+	
+	/**
+	 * @return String The function name
+	 */
+	public String toString(){
+		return "LOAD";
+	}
 }

@@ -32,8 +32,7 @@ public class Toplevel extends AbstrSubr {
 	 */
 	@Override
 	public _Sexpr eval() throws LispException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Symbol("TOPLEVEL");
 	}
 	
 	/**
@@ -83,5 +82,10 @@ public class Toplevel extends AbstrSubr {
 		return new Symbol("T");
 	}
 
-
+	/**
+	 * @return String The function name
+	 */
+	public String toString(){
+		return "TOPLEVEL";
+	}
 }

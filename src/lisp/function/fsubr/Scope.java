@@ -1,6 +1,7 @@
 package lisp.function.fsubr;
 
 import lisp.AbstrFsubr;
+import lisp.Symbol;
 import context.Contexts;
 import lisp._Sexpr;
 import exception.LispException;
@@ -15,8 +16,7 @@ public class Scope extends AbstrFsubr {
 	 */
 	@Override
 	public _Sexpr eval() throws LispException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Symbol("SCOPE");
 	}
 	
 	/**
@@ -43,4 +43,10 @@ public class Scope extends AbstrFsubr {
 		Contexts.printScope();
 	}
 	
+	/**
+	 * @return String The function name
+	 */
+	public String toString(){
+		return "SCOPE";
+	}
 }

@@ -2,6 +2,7 @@ package lisp.function.subr;
 
 import lisp.AbstrSubr;
 import lisp.Scons;
+import lisp.Symbol;
 import lisp._Sexpr;
 import exception.LispException;
 
@@ -18,8 +19,7 @@ public class Eval extends AbstrSubr{
 	 */
 	@Override
 	public _Sexpr eval() throws LispException {
-		// TODO Auto-generated method stub
-		return null;
+		return new Symbol("EVAL");
 	}
 
 	/**
@@ -42,5 +42,12 @@ public class Eval extends AbstrSubr{
 		if(out instanceof Scons)
 			((Scons)out).isRoot = true;
 		return out;
+	}
+	
+	/**
+	 * @return String The function name
+	 */
+	public String toString(){
+		return "EVAL";
 	}
 }
