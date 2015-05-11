@@ -26,6 +26,7 @@ import lisp.function.subr.Load;
 import lisp.function.subr.Print;
 import lisp.function.subr.Quit;
 import lisp.function.subr.Set;
+import lisp.function.subr.Toplevel;
 
 public class Contexts {
 	
@@ -60,6 +61,7 @@ public class Contexts {
 		addContext();
 		
 		// SUBR
+		contexts.getFirst().insertValue("TOPLEVEL".hashCode(), new Toplevel());
 		contexts.getFirst().insertValue("CAR".hashCode(), new Car());
 		contexts.getFirst().insertValue("CDR".hashCode(), new Cdr());
 		contexts.getFirst().insertValue("CONS".hashCode(), new Cons());
