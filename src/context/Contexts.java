@@ -20,6 +20,7 @@ import lisp.function.subr.Cdr;
 import lisp.function.subr.Cons;
 import lisp.function.subr.Eprogn;
 import lisp.function.subr.Eq;
+import lisp.function.subr.Eval;
 import lisp.function.subr.Implode;
 import lisp.function.subr.Load;
 import lisp.function.subr.Print;
@@ -64,6 +65,7 @@ public class Contexts {
 		contexts.getFirst().insertValue("CONS".hashCode(), new Cons());
 		contexts.getFirst().insertValue("EQ".hashCode(), new Eq());
 		contexts.getFirst().insertValue("ATOM".hashCode(), new Atom());
+		contexts.getFirst().insertValue("EVAL".hashCode(), new Eval());
 		
 		contexts.getFirst().insertValue("IMPLODE".hashCode(), new Implode());
 		contexts.getFirst().insertValue("PRINT".hashCode(), new Print());
