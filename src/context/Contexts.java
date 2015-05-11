@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import lisp.Nil;
+import lisp.Scons;
 import lisp.Symbol;
 import lisp._Sexpr;
 import lisp.function.fsubr.Cond;
@@ -175,6 +176,8 @@ public class Contexts {
 		while (it.hasNext()){
 			 Map.Entry<Symbol,_Sexpr> pair = (Entry<Symbol, _Sexpr>)it.next();
 			 if (pair.getValue() != null && pair.getKey() != null && pair.getValue() != Nil.nil){
+				 if(pair.getValue() instanceof Scons)
+					 ((Scons)pair.getValue()).isRoot = true;
 				 System.out.println(pair.getKey().toString()
 						 +"\t\t--->\t"
 						 +pair.getValue().toString());
