@@ -34,25 +34,15 @@ public class Apply extends AbstrSubr{
 	}
 
 	/**
-	 * Function used to apply an _Sexpr to the Car function
+	 * Function used to apply an _Sexpr to the Apply function
 	 * @return _Sexpr The _Sexpr resulting from application
 	 * @throws LispException 
 	 */
 	@Override
 	public _Sexpr apply(_Sexpr param) throws LispException{
-		if(param instanceof Symbol){
-			throw new LispException("Error : trying to apply CAR to a Symbol");
-		} else{
-			if(param.getCar() instanceof Scons && param.getCdr() == Nil.nil){
-				if(param.getCar().getCar() instanceof Scons)
-					((Scons)param.getCar().getCar()).isRoot = true;
-				return param.getCar().getCar();
-			}
-			else{
-				if(param.getCar() instanceof Scons)
-					((Scons)param.getCar()).isRoot = true;
-				return param.getCar();
-			}
-		}
+			
+				return param.eval();
 	}
+		
 }
+
